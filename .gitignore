@@ -40,4 +40,5 @@ yarn-debug.log*
 .yarn-integrity
 /config/database.yml
 /public/uploads
-
+.idea/*
+.DS_Store
