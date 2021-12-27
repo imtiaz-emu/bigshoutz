@@ -30,6 +30,8 @@
                 <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control' %>
               </div>
 
+              <%= f.hidden_field :role, value: params[:t] %>
+
               <div class="text-center">
                 <%= f.button :submit, class: 'btn btn-primary' do %>
                   <i class="fa fa-user-md"></i> Register

@@ -26,8 +26,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  CUSTOMER_TYPES = %w[fan celebrity talent].freeze
+
+  attr_accessor :role
+
   has_and_belongs_to_many :roles
   has_one :profile, dependent: :destroy
 
   after_create :create_profile
+  after_validation :assign_role, on: %i[create]
+
+  private
+
+  def assign_role
+    role = Role.find_by(name: self.role&.capitalize)
+
+    return if role.nil? || self&.roles&.include?(role)
+
+    self.roles << role
+  end
 end
