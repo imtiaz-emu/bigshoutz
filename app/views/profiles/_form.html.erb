@@ -1,0 +1,103 @@
+<div class="box">
+  <h1>User account</h1>
+  <p class="lead">Change your personal details or your password here.</p>
+  <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+  <h3>Change password</h3>
+  <%= form_for(@user, url: update_password_profile_path(@profile) ) do |f| %>
+    <%= render partial: 'shared/errors', locals: {obj: @user} %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :current_password, 'Current password' %>
+          <%= f.password_field :current_password, autocomplete: 'off', class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :password, 'New Password' %>
+          <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :password_confirmation, 'Retype new password' %>
+          <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Save new password
+      </button>
+    </div>
+  <% end %>
+
+  <h3 class="mt-5">Personal details</h3>
+  <%= form_for @profile do |f| %>
+    <%= render partial: 'shared/errors', locals: { obj: @profile } %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, autocomplete: 'off', class: 'form-control', id: 'firstname' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, autocomplete: 'off', class: 'form-control', id: 'lastname' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :date_of_birth %>
+          <%= f.date_field :date_of_birth, autocomplete: 'off',
+             min: Date.new(1970, 01, 01), max: Date.today, class: 'form-control', id: 'dateofbirth' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :gender %>
+          <%= f.select :gender, options_for_select(Profile.genders, @profile.gender),
+             class: 'form-control', id: 'genderselection' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :photo %>
+          <%= f.file_field :photo, class: 'form-control', id: 'profilephoto' %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :mobile_no %>
+          <%= f.text_field :mobile_no, autocomplete: 'off', class: 'form-control', id: 'mobilenumber' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <%= f.label :about_me, 'Biography' %>
+          <%= f.text_area :about_me, autocomplete: 'off', class: 'form-control', id: 'about_me' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Save changes
+      </button>
+    </div>
+  <% end %>
+</div>

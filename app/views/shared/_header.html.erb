@@ -38,6 +38,9 @@
 
               <% if current_user %>
                 <li class="nav-item">
+                  <%= link_to 'Profile', profile_path(current_user.profile) %>
+                </li>
+                <li class="nav-item">
                   <%= link_to 'Dashboard', dashboard_path %>
                 </li>
                 <li class="nav-item">

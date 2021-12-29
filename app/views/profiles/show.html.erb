@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'profiles/sidebar' %>
+  </div>
+
+  <div class="col-lg-9">
+    <div class="box">
+      <h2>User account</h2>
+      <p><%= @profile.about_me %></p>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h4><i class="fa fa-"></i>Details</h4>
+          <p>
+            <%= @profile.full_name %>
+            <br>
+            <%= @profile.gender %>
+            <br>
+            <%= @profile.date_of_birth %>
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <h4><i class="fa fa-phone"></i> Contact</h4>
+          <p>
+            <strong><%= @profile.mobile_no %></strong>
+            <br>
+            <%= @user.email %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

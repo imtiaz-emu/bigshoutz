@@ -20,18 +20,6 @@
   <body>
     <%= render 'shared/header' %>
 
-    <%= render 'shared/notices', type: 'info', notice: notice %>
-    <%= render 'shared/notices', type: 'warning', notice: alert %>
-
-    <div id="all">
-      <div id="content">
-        <div class="<%= params[:controller] == 'home' ? '' : 'container' %>">
-          <%= yield %>
-        </div>
-      </div>
-    </div>
-
-    <%= render 'shared/footer' %>
-    <%= render 'shared/copyright' %>
+    <%= yield %>
   </body>
 </html>
