@@ -1,0 +1,51 @@
+<div class="box">
+  <h2><%= @service.new_record? ? 'Create' : 'Update' %> Service </h2>
+  <p class="lead">Change your personal details or your password here.</p>
+  <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+  <%= form_for @service do |f| %>
+    <%= render 'shared/errors', obj: @service %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, autocomplete: 'off', class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :image %>
+          <%= f.file_field :image, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, autocomplete: 'off', class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <%= f.check_box :active %>
+          <%= f.label :active %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <%= link_to @service.new_record? ? services_path : service_path(@service), class: 'btn btn-outline-primary' do %>
+        <i class="fa fa-close"></i> Cancel
+      <% end %>
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Save
+      </button>
+    </div>
+  <% end %>
+</div>

@@ -2,37 +2,39 @@
   <h1>User account</h1>
   <p class="lead">Change your personal details or your password here.</p>
   <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-  <h3>Change password</h3>
-  <%= form_for(@user, url: update_password_profile_path(@profile) ) do |f| %>
-    <%= render partial: 'shared/errors', locals: {obj: @user} %>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <%= f.label :current_password, 'Current password' %>
-          <%= f.password_field :current_password, autocomplete: 'off', class: 'form-control' %>
+  <% if current_profile?(@profile) %>
+    <h3>Change password</h3>
+    <%= form_for(@user, url: update_password_profile_path(@profile) ) do |f| %>
+      <%= render partial: 'shared/errors', locals: {obj: @user} %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :current_password, 'Current password' %>
+            <%= f.password_field :current_password, autocomplete: 'off', class: 'form-control' %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <%= f.label :password, 'New Password' %>
-          <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :password, 'New Password' %>
+            <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :password_confirmation, 'Retype new password' %>
+            <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <%= f.label :password_confirmation, 'Retype new password' %>
-          <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-12 text-center">
-      <button type="submit" class="btn btn-primary">
-        <i class="fa fa-save"></i> Save new password
-      </button>
-    </div>
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-save"></i> Save new password
+        </button>
+      </div>
+    <% end %>
   <% end %>
 
   <h3 class="mt-5">Personal details</h3>

@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  include ApplicationHelper
+
+  layout :fetch_layout
+
   protected
 
   def configure_permitted_parameters
@@ -15,5 +19,13 @@ class ApplicationController < ActionController::Base
 
   def render_404
     render template: 'shared/404', layout: 'error_404', status: 404
+  end
+
+  def fetch_layout
+    if devise_controller? || params[:controller] == 'home'
+      'application'
+    else
+      'dashboard'
+    end
   end
 end

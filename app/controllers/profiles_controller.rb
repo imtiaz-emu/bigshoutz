@@ -57,7 +57,12 @@ class ProfilesController < ApplicationController
     params.require(:user).permit(:password, :password_confirmation, :current_password)
   end
 
+  # user can edit only his profile. Admin can edit other's profile.
   def editing_others_profile?
-    redirect_to edit_profile_path(current_user.profile) if current_user.profile != @profile
+    return if is_admin?
+
+    if current_user.profile != @profile
+      redirect_to edit_profile_path(current_user.profile)
+    end
   end
 end

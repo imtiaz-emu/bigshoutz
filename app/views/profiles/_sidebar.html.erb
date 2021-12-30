@@ -10,11 +10,11 @@
       <a href="customer-wishlist.html" class="nav-link">
         <i class="fa fa-heart"></i> My orders
       </a>
-      <a href="customer-account.html" class="nav-link">
-        <i class="fa fa-user"></i> Edit Account
+      <a href="<%= profile_path(current_profile) %>" class="nav-link">
+        <i class="fa fa-user"></i> My Account
       </a>
-      <a href="index.html" class="nav-link">
-        <i class="fa fa-sign-out"></i> Logout
+      <a href="<%= edit_profile_path(current_profile) %>" class="nav-link">
+        <i class="fa fa-user"></i> Edit Account
       </a>
     </ul>
   </div>

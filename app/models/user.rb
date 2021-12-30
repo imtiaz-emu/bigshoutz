@@ -38,10 +38,12 @@ class User < ApplicationRecord
 
   private
 
+  # assign role from sign up. If invalid/no role provided - use 'Fan' as default role
   def assign_role
     role = Role.find_by(name: self.role&.capitalize)
+    role = Role.find_by(name: 'Fan') if role.nil?
 
-    return if role.nil? || self&.roles&.include?(role)
+    return if self&.roles&.include?(role)
 
     self.roles << role
   end

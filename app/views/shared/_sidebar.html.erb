@@ -1,0 +1,5 @@
+<% if %w[services].include?(params[:controller]) %>
+  <%= render "dashboard/sidebar" %>
+<% else %>
+  <%= render "#{params[:controller]}/sidebar" %>
+<% end %>

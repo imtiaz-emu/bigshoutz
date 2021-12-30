@@ -1,0 +1,24 @@
+<div id="blog-listing">
+  <div class="post">
+    <h2><%= @service.title %></h2>
+    <hr>
+    <p class="date-comments">
+      <i class="fa fa-calendar-o"></i> <%= @service.created_at %>
+      <br>
+      <i class="fa fa-lightbulb-o"></i> <%= @service.active ? 'Active' : 'Inactive' %>
+    </p>
+    <div class="image">
+      <%= image_tag @service.image, class: 'img-fluid' %>
+    </div>
+    <p class="intro"><%= @service.description %></p>
+  </div>
+
+  <div class="pager d-flex justify-content-between">
+    <%= link_to services_path, class: 'btn btn-outline-primary' do %>
+      <i class="fa fa-close"></i> Cancel
+    <% end %>
+    <%= link_to service_path(@service), method: :delete, class: 'btn btn-outline-danger' do %>
+      <i class="fa fa-close"></i> Delete
+    <% end %>
+  </div>
+</div>
