@@ -35,6 +35,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
+group :production do
+  gem 'unicorn', '~> 6.0'
+end
+
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
@@ -45,6 +49,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'annotate', '~> 3.1', '>= 3.1.1'
+  gem 'mina', '1.2.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
