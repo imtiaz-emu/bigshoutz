@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_30_033825) do
+ActiveRecord::Schema.define(version: 2021_12_31_033957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,34 @@ ActiveRecord::Schema.define(version: 2021_12_30_033825) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.integer "service_id"
+    t.integer "owner_id"
+    t.string "name", default: "", null: false
+    t.text "description"
+    t.datetime "available_on"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "deleted_at"
+    t.text "meta_description"
+    t.string "meta_keywords"
+    t.boolean "promotionable", default: true
+    t.string "meta_title"
+    t.datetime "discontinue_on"
+    t.string "talk_type"
+    t.datetime "event_time"
+    t.string "event_place"
+    t.datetime "live_session_time"
+    t.datetime "live_session_end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["available_on"], name: "index_listings_on_available_on"
+    t.index ["deleted_at"], name: "index_listings_on_deleted_at"
+    t.index ["discontinue_on"], name: "index_listings_on_discontinue_on"
+    t.index ["name"], name: "index_listings_on_name"
+    t.index ["owner_id"], name: "index_listings_on_owner_id"
+    t.index ["service_id"], name: "index_listings_on_service_id"
   end
 
   create_table "profiles", force: :cascade do |t|

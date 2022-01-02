@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :services
+  resources :listings
 
   root 'home#index'
 end

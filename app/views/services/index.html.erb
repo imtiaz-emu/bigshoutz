@@ -41,8 +41,10 @@
             <%= link_to service_path(service) do %>
               <i class="fa fa-search-plus"></i>
             <% end %>
-            <%= link_to service_path(service), method: :delete do %>
-              <i class="fa fa-trash"></i>
+            <% if service.can_destroy? %>
+              <%= link_to service_path(service), method: :delete do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
             <% end %>
           </td>
         </tr>

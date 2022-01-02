@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id            :bigint           not null, primary key
+#  user_id       :integer
+#  first_name    :string
+#  last_name     :string
+#  date_of_birth :date
+#  gender        :integer
+#  mobile_no     :string
+#  about_me      :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 class Profile < ApplicationRecord
   belongs_to :user
 
@@ -5,9 +20,9 @@ class Profile < ApplicationRecord
     attachable.variant :thumb, resize: '200x200'
   end
 
-  validate :acceptable_image_type?
-  validate :acceptable_image_size?
-  validates_presence_of :first_name, :last_name, :mobile_no, :gender, :date_of_birth
+  validate :acceptable_image_type?, on: :update
+  validate :acceptable_image_size?, on: :update
+  validates_presence_of :first_name, :last_name, :mobile_no, :gender, :date_of_birth, on: :update
 
   enum gender: { 'Male': 0, 'Female': 1, 'Others': 2 }
 

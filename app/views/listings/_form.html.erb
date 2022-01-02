@@ -1,0 +1,113 @@
+<div class="box">
+  <h2><%= @listing.new_record? ? 'Create' : 'Update' %> Listing </h2>
+  <p class="lead">Change your personal details or your password here.</p>
+  <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+  <%= form_for @listing do |f| %>
+    <%= render 'shared/errors', obj: @listing %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :service_id %>
+          <%= f.select :service_id, options_for_select(Service.all.map { |s| [s.title, s.id] }, @listing.service_id),
+                       {}, { class: 'form-control' } %>
+        </div>
+      </div>
+
+      <% if is_admin? %>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :owner_id, 'Select Celebrity' %>
+            <%= f.select :owner_id, options_for_select(list_of_celebrities, @listing.owner_id),
+                         {}, { class: 'form-control' } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, autocomplete: 'off', class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <%= f.label :meta_keywords %>
+          <%= f.text_field :meta_keywords, placeholder: 'Put tags using comma', class: 'form-control' %>
+          <small>e.g. hangout, selfie, chat, coffee</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <%= f.label :uploads, 'Upload Video/Image' %>
+          <%= f.file_field :uploads, multiple: true, class: 'form-control' %>
+          <small>Upload maximum 4 images/videos</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :price %>
+          <%= f.text_field :price, class: 'form-control', required: true %>
+          <small>e.g. 100 USD or 120 MYR or 72.10 SGD</small>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :available_on %>
+          <%= f.datetime_field :available_on, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :event_place %>
+          <%= f.text_field :event_place, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :event_time %>
+          <%= f.datetime_field :event_time, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :live_session_time %>
+          <%= f.datetime_field :live_session_time, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :live_session_end_time %>
+          <%= f.datetime_field :live_session_end_time, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <%= link_to @listing.new_record? ? listings_path : listing_path(@listing), class: 'btn btn-outline-primary' do %>
+        <i class="fa fa-close"></i> Cancel
+      <% end %>
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Save
+      </button>
+    </div>
+  <% end %>
+</div>

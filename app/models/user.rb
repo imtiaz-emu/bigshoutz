@@ -32,6 +32,9 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :roles
   has_one :profile, dependent: :destroy
+  has_many :listings, class_name: 'Listing', foreign_key: 'owner_id'
+
+  scope :celebrities, -> { joins(:roles, :profile).where(roles: { name: %w[Celebrity Talent] }) }
 
   after_create :create_profile
   after_validation :assign_role, on: %i[create]
