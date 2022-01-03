@@ -6,7 +6,8 @@ class ListingsController < ApplicationController
 
   # GET /listings or /listings.json
   def index
-    @listings = Listing.all
+    @services = Service.all
+    @listings = Listing.includes(:service).all
   end
 
   # GET /listings/1 or /listings/1.json
