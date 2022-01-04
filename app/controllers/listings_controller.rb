@@ -7,7 +7,9 @@ class ListingsController < ApplicationController
   # GET /listings or /listings.json
   def index
     @services = Service.all
-    @listings = Listing.includes(:service).all
+    @listings = Listing.includes(:service, :uploads_attachments).all
+    @listings = @listings.where(owner_id: params[:u]) if params[:u].present?
+    @listings = @listings.where(service_id: params[:s]) if params[:s].present?
   end
 
   # GET /listings/1 or /listings/1.json
@@ -69,7 +71,7 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:owner_id, :service_id, :name, :description, :available_on, :price,
-      :deleted_at, :meta_description, :meta_keywords, :promotionable, :meta_title, :discontinue_on,
+      :deleted_at, :meta_description, :meta_keywords, :promotionable, :meta_title, :discontinue_on, :currency,
       :talk_type, :event_time, :event_place, :live_session_time, :live_session_end_time, uploads: []
     )
   end

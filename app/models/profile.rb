@@ -22,7 +22,7 @@ class Profile < ApplicationRecord
 
   validate :acceptable_image_type?, on: :update
   validate :acceptable_image_size?, on: :update
-  validates_presence_of :first_name, :last_name, :mobile_no, :gender, :date_of_birth, on: :update
+  validates_presence_of :first_name, :last_name, :gender, :date_of_birth, on: :update
 
   enum gender: { 'Male': 0, 'Female': 1, 'Others': 2 }
 

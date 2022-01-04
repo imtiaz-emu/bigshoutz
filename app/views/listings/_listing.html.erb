@@ -1,0 +1,44 @@
+<div class="col-lg-4 col-md-6">
+  <div class="product">
+    <div class="flip-container">
+      <% if listing.has_video? %>
+        <video controls="controls" width="100%" src="<%= rails_blob_url(listing.videos.sample) %>">
+          Your browser does not support the HTML5 Video element.
+        </video>
+      <% else %>
+        <% image1, image2 = listing.images.sample(2) %>
+        <div class="flipper">
+          <div class="front">
+            <a href="<%= listing_path(listing) %>">
+              <%= image_tag image1, class: 'img-fluid' %>
+            </a>
+          </div>
+          <div class="back">
+            <a href="<%= listing_path(listing) %>">
+              <%= image_tag image2, class: 'img-fluid' %>
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <% if image1 %>
+      <a href="<%= listing_path(listing) %>" class="invisible">
+        <%= image_tag image1, class: 'img-fluid' %>
+      </a>
+    <% end %>
+
+    <div class="text">
+      <h3>
+        <a href="<%= listing_path(listing) %>"><%= listing.name %></a>
+      </h3>
+      <p class="price">
+        <del></del><%= listing.currency %> <%= listing.price %>
+      </p>
+      <p class="buttons">
+        <a href="<%= listing_path(listing) %>" class="btn btn-outline-secondary">View detail</a>
+        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+      </p>
+    </div>
+  </div>
+</div>

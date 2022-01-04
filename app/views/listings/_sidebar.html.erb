@@ -11,7 +11,7 @@
           </a>
           <ul class="list-unstyled">
             <% @services.each do |service| %>
-              <li><a href="<%= listings_path(s: service.id) %>" class="nav-link"><%= service.name %></a></li>
+              <li><a href="<%= listings_path(s: service.id) %>" class="nav-link"><%= service.title %></a></li>
             <% end %>
           </ul>
         </li>

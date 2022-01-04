@@ -26,10 +26,22 @@
 class Listing < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   belongs_to :service
-  has_many_attached :uploads
+  has_many_attached :uploads, dependent: :destroy
 
-  validates :uploads, content_type: { in: %w[/\Aimage\/.*\Z/ /\Avideo\/.*\Z/],
+  validates :uploads, content_type: { in: %i[gif png jpg jpeg mp4 3gp mkv],
                                       min: 1, max: 4,
                                       message: ' not a valid format, supports image/video' }
-  validates_presence_of :name, :description, :price, :available_on
+  validates_presence_of :name, :description, :price, :available_on, :currency
+
+  def has_video?
+    videos.any?
+  end
+
+  def videos
+    uploads.select { |upload| upload.content_type.include?('video') }
+  end
+
+  def images
+    uploads.select { |upload| upload.content_type.include?('image') }
+  end
 end

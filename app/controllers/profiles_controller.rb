@@ -48,7 +48,7 @@ class ProfilesController < ApplicationController
       @profile_params
     else
       @profile_params = params.require(:profile).permit(:first_name, :last_name, :photo, :about_me,
-                                    :mobile_no, :date_of_birth, :gender)
+                                    :mobile_no, :date_of_birth, :gender, :fb_link, :twitter_link, :insta_link)
       prepare_params
     end
   end
