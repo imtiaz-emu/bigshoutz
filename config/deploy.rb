@@ -9,7 +9,7 @@ require 'mina/rvm'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'bigshoutz'
-set :domain, '3.128.169.91'
+set :domain, '13.214.180.201'
 set :user, 'ubuntu'
 set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application_name)}"
 set :repository, 'git@github.com:imtiaz-emu/bigshoutz.git'
