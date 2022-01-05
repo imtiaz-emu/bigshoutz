@@ -1,5 +1,8 @@
 class DashboardController < ApplicationController
 
-  def index
+  def index; end
+
+  def listings
+    @listings = current_user.listings
   end
 end
