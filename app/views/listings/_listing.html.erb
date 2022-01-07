@@ -10,12 +10,20 @@
         <div class="flipper">
           <div class="front">
             <a href="<%= listing_path(listing) %>">
-              <%= image_tag image1, class: 'img-fluid' %>
+              <% if image1 %>
+                <%= image_tag image1, class: 'img-fluid' %>
+              <% else %>
+                <%= image_tag '', class: 'img-fluid' %>
+              <% end %>
             </a>
           </div>
           <div class="back">
             <a href="<%= listing_path(listing) %>">
-              <%= image_tag image2, class: 'img-fluid' %>
+              <% if image2 %>
+                <%= image_tag image2, class: 'img-fluid' %>
+              <% else %>
+                <%= image_tag '', class: 'img-fluid' %>
+              <% end %>
             </a>
           </div>
         </div>

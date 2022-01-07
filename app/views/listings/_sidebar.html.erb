@@ -6,7 +6,7 @@
     <ul class="nav nav-pills flex-column">
       <% if %w[index show].include?(params[:action]) %>
         <li>
-          <a href="category.html" class="nav-link">Services
+          <a href="<%= listings_path %>" class="nav-link">Services
             <span class="badge badge-secondary"><%= @services.length %></span>
           </a>
           <ul class="list-unstyled">
@@ -19,7 +19,7 @@
 
       <% if %w[new edit].include?(params[:action]) %>
         <li>
-          <a href="category.html" class="nav-link">My Listings
+          <a href="<%= listings_path(u: current_user.id) %>" class="nav-link">My Listings
             <span class="badge badge-secondary"><%= @services.length %></span>
           </a>
           <ul class="list-unstyled">

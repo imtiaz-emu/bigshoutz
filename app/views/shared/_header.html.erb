@@ -53,8 +53,10 @@
           <!-- TODO: Services will be a navbar -->
           <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">Services<b class="caret"></b></a>
             <ul class="dropdown-menu megamenu">
-              <% 3.times do |i| %>
-                <li class="nav-item"><a href="javascript:void(0)" class="nav-link">Service <%= i %></a></li>
+              <% services.each do |service| %>
+                <li class="nav-item">
+                  <a href="<%= listings_path(s: service.id) %>" class="nav-link"><%= service.title %></a>
+                </li>
               <% end %>
             </ul>
           </li>

@@ -22,4 +22,8 @@ module ApplicationHelper
       ].any?
     end
   end
+
+  def services
+    Service.all
+  end
 end

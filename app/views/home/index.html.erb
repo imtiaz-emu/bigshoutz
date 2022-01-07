@@ -20,19 +20,13 @@
 <div id="advantages">
   <div class="container">
     <div class="row mb-4">
-      <% 4.times do |i| %>
-        <div class="col-md-3">
-          <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
-            <div class="icon"><i class="fa fa-heart"></i></div>
-            <h3><a href="#">We love our customers</a></h3>
-            <p class="mb-0">We are known to provide best possible service ever</p>
-          </div>
+      <% services.sample(4).each do |service| %>
+        <div class="col-lg-3 col-md-4">
+
         </div>
       <% end %>
     </div>
-    <!-- /.row-->
   </div>
-  <!-- /.container-->
 </div>
 
 <div id="hot">
