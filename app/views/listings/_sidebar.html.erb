@@ -20,10 +20,10 @@
       <% if %w[new edit].include?(params[:action]) %>
         <li>
           <a href="<%= listings_path(u: current_user.id) %>" class="nav-link">My Listings
-            <span class="badge badge-secondary"><%= @services.length %></span>
+            <span class="badge badge-secondary"><%= services.length %></span>
           </a>
           <ul class="list-unstyled">
-            <% @services.each do |service| %>
+            <% services.each do |service| %>
               <li><a href="<%= listings_path(s: service.id, u: current_user.id) %>" class="nav-link"><%= service.title %></a></li>
             <% end %>
           </ul>
