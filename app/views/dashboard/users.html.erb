@@ -1,0 +1,42 @@
+<div class="box">
+  <h1>
+    Users
+  </h1>
+  <p class="lead">Your orders on one place.</p>
+  <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Confirmed On</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <th># <%= user.id %></th>
+          <td><%= user.email %></td>
+          <td><%= user.profile.full_name %></td>
+          <td><%= user.roles.map(&:name).join(',') %></td>
+          <td><%= user.confirmed_at.strftime('%d-%m-%Y at %I:%M%p') %></td>
+
+          <td>
+            <%= link_to edit_profile_path(user.profile) do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+            <%= link_to profile_path(user.profile) do %>
+              <i class="fa fa-search-plus"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

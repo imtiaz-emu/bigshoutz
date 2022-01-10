@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :dashboard, only: %i[index] do
     collection do
       get 'listings'
+      get 'users'
+      get 'services'
     end
   end
 
