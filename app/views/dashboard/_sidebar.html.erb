@@ -4,17 +4,22 @@
   </div>
   <div class="card-body">
     <ul class="nav nav-pills flex-column">
-      <a href="customer-orders.html" class="nav-link active">
-        <i class="fa fa-list"></i> Users
-      </a>
-      <a href="<%= services_path %>" class="nav-link">
-        <i class="fa fa-heart"></i> Services
-      </a>
-      <a href="customer-account.html" class="nav-link">
-        <i class="fa fa-user"></i> Listings
-      </a>
-      <a href="index.html" class="nav-link">
-        <i class="fa fa-sign-out"></i> Orders
+      <% if is_admin? %>
+        <a href="<%= users_dashboard_index_path %>" class="nav-link <%= active_sidebar('users') %>">
+          <i class="fa fa-users"></i> Users
+        </a>
+
+        <a href="<%= services_dashboard_index_path %>" class="nav-link <%= active_sidebar('services') %>">
+          <i class="fa fa-gears"></i> Services
+        </a>
+      <% end %>
+      <% unless is_fan? %>
+        <a href="<%= listings_dashboard_index_path %>" class="nav-link <%= active_sidebar('listings') %>">
+          <i class="fa fa-database"></i> Listings
+        </a>
+      <% end %>
+      <a href="javascript:void(0)" class="nav-link <%= active_sidebar('orders') %>">
+        <i class="fa fa-shopping-cart"></i> Orders
       </a>
     </ul>
   </div>

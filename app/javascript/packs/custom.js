@@ -1,3 +1,11 @@
 $(document).ready(function(){
-  // $('.jumbotron h3').prepend("hello world");
+  $('.shop-detail-carousel').owlCarousel({
+    items: 1,
+    thumbs: true,
+    nav: false,
+    dots: false,
+    loop: true,
+    autoplay: true,
+    thumbsPrerendered: true
+  });
 });

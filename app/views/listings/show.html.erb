@@ -1,0 +1,90 @@
+<div class="col-lg-9 order-1 order-lg-2">
+  <div id="productMain" class="row">
+    <div class="col-md-6">
+      <% if @listing.has_video? %>
+        <video controls="controls" width="100%" src="<%= rails_blob_url(@listing.videos.sample) %>">
+          Your browser does not support the HTML5 Video element.
+        </video>
+      <% else %>
+        <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+          <% @listing.images.each do |image| %>
+            <div class="item">
+              <%= image_tag image, class: 'img-fluid' %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <!-- /.ribbon-->
+      <!--
+      <div class="ribbon sale">
+        <div class="theribbon">SALE</div>
+        <div class="ribbon-background"></div>
+      </div>
+
+      <div class="ribbon new">
+        <div class="theribbon">NEW</div>
+        <div class="ribbon-background"></div>
+      </div>
+      -->
+    </div>
+    <div class="col-md-6">
+      <div class="box">
+        <h1 class="text-center"><%= @listing.name %></h1>
+        <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to listing details</a></p>
+        <p class="price"><%= @listing.currency %> <%= @listing.price %></p>
+        <p class="text-center buttons">
+          <%= link_to "javascript:void(0)" do %>
+            <i class="fa fa-2x fa-thumbs-o-up"></i>
+          <% end %>
+          <%= link_to "javascript:void(0)" do %>
+            <i class="fa fa-2x fa-thumbs-o-down"></i>
+          <% end %>
+          <a href="basket.html" class="btn btn-outline-primary">
+            <i class="fa fa-heart"></i> Add to Cart
+          </a>
+        </p>
+      </div>
+
+      <% unless @listing.has_video? %>
+        <div data-slider-id="1" class="owl-thumbs">
+          <% @listing.images.each do |image| %>
+            <button class="owl-thumb-item">
+              <%= image_tag image, class: 'img-fluid' %>
+            </button>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="details" class="box">
+    <p></p>
+    <h4><%= @listing.service.title %> details</h4>
+    <p><%= @listing.description %></p>
+    <h4>Event Schedule</h4>
+    <ul>
+      <% if @listing.event_time.present? %>
+        <li><strong>Event Time: </strong><%= @listing.event_time.strftime('%d-%m-%Y at %I:%M%p') %></li>
+      <% end %>
+      <li><strong>Event Place: </strong><%= @listing.event_place %></li>
+    </ul>
+    <% if @listing.live_session_time.present? %>
+      <h4>Live session details</h4>
+      <ul>
+        <li><strong>Start Time: </strong><%= @listing.live_session_time&.strftime('%d-%m-%Y at %I:%M%p') %></li>
+        <li><strong>End Time: </strong><%= @listing.live_session_end_time&.strftime('%d-%m-%Y at %I:%M%p') %></li>
+      </ul>
+    <% end %>
+    <hr>
+    <div class="social">
+      <h4>Show it to your friends</h4>
+      <p>
+        <a href="#" class="external facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a>
+        <a href="#" class="external twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="email"><i class="fa fa-envelope"></i></a>
+      </p>
+    </div>
+  </div>
+</div>

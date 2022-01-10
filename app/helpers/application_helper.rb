@@ -12,4 +12,12 @@ module ApplicationHelper
   def current_profile
     current_user.profile
   end
+
+  def active_sidebar(nav)
+    params[:action] == nav ? 'active' : ''
+  end
+
+  def services
+    Service.all
+  end
 end

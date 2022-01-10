@@ -1,9 +1,6 @@
 <div class="box">
   <h1>
     Services
-    <%= link_to new_service_path do %>
-      <i class="fa fa-plus-circle"></i>
-    <% end %>
   </h1>
   <p class="lead">Your orders on one place.</p>
   <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
@@ -16,7 +13,6 @@
         <th>Title</th>
         <th>Description</th>
         <th>Image</th>
-        <th>Status</th>
         <th>Action</th>
       </tr>
       </thead>
@@ -27,13 +23,11 @@
           <td><%= service.title %></td>
           <td><%= service.description %></td>
           <td>
-            <%= image_tag service.image&.variant(resize: '100x100'), alt: "#{service.title} photo", class: 'img-fluid' %>
+            <% if service.image.attached? %>
+              <%= image_tag service.image.variant(resize: '50x50'), class: 'img-fluid' %>
+            <% end %>
           </td>
-          <td>
-            <span class="badge badge-<%= service_statuses[service.active.to_s] %>">
-              <%= service.active ? 'Active' : 'Inactive' %>
-            </span>
-          </td>
+
           <td>
             <%= link_to edit_service_path(service) do %>
               <i class="fa fa-edit"></i>
@@ -42,7 +36,7 @@
               <i class="fa fa-search-plus"></i>
             <% end %>
             <% if service.can_destroy? %>
-              <%= link_to service_path(service), method: :delete do %>
+              <%= link_to service_path(service), data: { confirm: 'Are you sure?' }, method: :delete do %>
                 <i class="fa fa-trash"></i>
               <% end %>
             <% end %>

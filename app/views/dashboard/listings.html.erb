@@ -1,0 +1,52 @@
+<div class="box">
+  <h1>
+    Listings
+    <%= link_to new_listing_path do %>
+      <i class="fa fa-plus-circle"></i>
+    <% end %>
+  </h1>
+  <p class="lead">Your orders on one place.</p>
+  <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Service</th>
+        <th>Price</th>
+        <th>Available On</th>
+        <th>Event Date</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @listings.each do |listing| %>
+        <tr>
+          <th># <%= listing.id %></th>
+          <td><%= listing.name %></td>
+          <td><%= listing.service.title %></td>
+          <td><%= listing.currency %> <%= listing.price %></td>
+          <td><%= listing.available_on.strftime('%d-%m-%Y at %I:%M%p') %></td>
+          <td><%= listing.event_time.strftime('%d-%m-%Y at %I:%M%p') %></td>
+
+          <td>
+            <%= link_to edit_listing_path(listing) do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+            <%= link_to listing_path(listing) do %>
+              <i class="fa fa-search-plus"></i>
+            <% end %>
+            <% if listing.can_destroy? %>
+              <%= link_to listing_path(listing), method: :delete do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

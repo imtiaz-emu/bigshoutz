@@ -88,6 +88,30 @@
     </div>
 
     <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <%= f.label :fb_link, 'Facebook url' %>
+          <%= f.text_field :fb_link, class: 'form-control' %>
+          <small>e.g. https://www.facebook.com/johndoe/</small>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <%= f.label :twitter_link, 'Twitter url' %>
+          <%= f.text_field :twitter_link, class: 'form-control' %>
+          <small>e.g. https://twitter.com/johndoe/</small>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <%= f.label :insta_link, 'Instagram url' %>
+          <%= f.text_field :insta_link, class: 'form-control' %>
+          <small>e.g. https://www.instagram.com/johndoe/</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-12">
         <div class="form-group">
           <%= f.label :about_me, 'Biography' %>

@@ -4,17 +4,17 @@
   </div>
   <div class="card-body">
     <ul class="nav nav-pills flex-column">
-      <a href="customer-orders.html" class="nav-link active">
+      <a href="<%= listings_path(u: current_user.id) %>" class="nav-link <%= active_sidebar('listings') %>">
         <i class="fa fa-list"></i> My listings
       </a>
-      <a href="customer-wishlist.html" class="nav-link">
-        <i class="fa fa-heart"></i> My orders
+      <a href="customer-wishlist.html" class="nav-link <%= active_sidebar('orders') %>">
+        <i class="fa fa-shopping-cart"></i> My orders
       </a>
-      <a href="<%= profile_path(current_profile) %>" class="nav-link">
+      <a href="<%= profile_path(current_profile) %>" class="nav-link <%= active_sidebar('show') %>">
         <i class="fa fa-user"></i> My Account
       </a>
-      <a href="<%= edit_profile_path(current_profile) %>" class="nav-link">
-        <i class="fa fa-user"></i> Edit Account
+      <a href="<%= edit_profile_path(current_profile) %>" class="nav-link <%= active_sidebar('edit') %>">
+        <i class="fa fa-cog"></i> Edit Account
       </a>
     </ul>
   </div>

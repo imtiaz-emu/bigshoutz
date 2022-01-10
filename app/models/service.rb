@@ -1,4 +1,17 @@
+# == Schema Information
+#
+# Table name: services
+#
+#  id          :bigint           not null, primary key
+#  title       :string
+#  description :text
+#  active      :boolean          default(TRUE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 class Service < ApplicationRecord
+  has_many :listings
+
   validates_presence_of :title, :description
 
   has_one_attached :image, dependent: :destroy do |attachable|
