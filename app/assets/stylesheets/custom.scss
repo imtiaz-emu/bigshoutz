@@ -1,0 +1,31 @@
+.profiler-results.profiler-no-controls{
+  display: none;
+}
+/*Home CSS*/
+.home-banner img{
+  width: 100%;
+}
+.navbar-brand.home img{
+  width: 65px;
+  height: auto;
+}
+/*Dashboard CSS*/
+@media (min-width: 1200px) and (max-width: 1500px){
+  .quick_activity_wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.single_quick_activity{
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding: 41px 30px;
+  position: relative;
+}
+.quick_activity_wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  margin-bottom: 50px;
+}
