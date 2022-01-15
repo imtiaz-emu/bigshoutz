@@ -9,7 +9,7 @@ require 'mina/rvm'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'bigshoutz'
-set :domain, '13.214.180.201'
+set :domain, '13.214.170.112'
 set :user, 'ubuntu'
 set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application_name)}"
 set :repository, 'git@github.com:imtiaz-emu/bigshoutz.git'
@@ -94,4 +94,9 @@ end
 #  - https://github.com/mina-deploy/mina/tree/master/docs
 on :launch do
   command 'sudo systemctl restart bigshoutz'
+end
+
+task :seed do
+  queue "cd #{fetch(:deploy_to)}/current"
+  queue "bundle exec rails db:seed RAILS_ENV=production"
 end
