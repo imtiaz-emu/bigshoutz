@@ -94,6 +94,10 @@ end
 #  - https://github.com/mina-deploy/mina/tree/master/docs
 on :launch do
   command 'sudo systemctl reload bigshoutz.service'
-  command "cd #{fetch(:deploy_to)}/current"
-  command "bundle exec rails db:seed RAILS_ENV=production"
+end
+
+task :seed => :environment do
+  queue "cd #{fetch(:deploy_to)}/current"
+  queue "bundle exec rake db:seed RAILS_ENV=production"
+  queue  %[echo "-----> Rake Seeding Completed."]
 end
