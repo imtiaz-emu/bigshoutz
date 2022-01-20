@@ -35,6 +35,11 @@ class User < ApplicationRecord
   has_many :listings, class_name: 'Listing', foreign_key: 'owner_id'
 
   scope :celebrities, -> { joins(:roles, :profile).where(roles: { name: %w[Celebrity Talent] }) }
+  scope :celebrities_with_complete_profile, -> {
+    joins(:roles, :profile)
+    .where.not(profile: { first_name: nil, last_name: nil })
+    .where(roles: { name: %w[Celebrity Talent] })
+  }
 
   after_create :create_profile
   after_validation :assign_role, on: %i[create]

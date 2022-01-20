@@ -33,6 +33,8 @@ class Listing < ApplicationRecord
                                       message: ' not a valid format, supports image/video' }
   validates_presence_of :name, :description, :price, :available_on, :currency
 
+  enum video_preview_duration: { '5_Second': 0, '10_Second': 1 }
+
   def has_video?
     videos.any?
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_035528) do
+ActiveRecord::Schema.define(version: 2022_01_20_145143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 2022_01_04_035528) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "currency"
+    t.boolean "is_free", default: false
+    t.string "event_address"
+    t.integer "video_preview_duration"
     t.index ["available_on"], name: "index_listings_on_available_on"
     t.index ["deleted_at"], name: "index_listings_on_deleted_at"
     t.index ["discontinue_on"], name: "index_listings_on_discontinue_on"

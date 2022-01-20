@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index show ]
   before_action :check_user_type, only: %i[ create new ]
+  before_action :check_profile_data_missing, only: %i[ create new ]
   before_action :set_listing, only: %i[ show edit update destroy ]
   before_action :check_owner, only: %i[ edit update destroy ]
 
@@ -71,8 +72,9 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:owner_id, :service_id, :name, :description, :available_on, :price,
-      :deleted_at, :meta_description, :meta_keywords, :promotionable, :meta_title, :discontinue_on, :currency,
-      :talk_type, :event_time, :event_place, :live_session_time, :live_session_end_time, uploads: []
+      :deleted_at, :meta_description, :meta_keywords, :promotionable, :meta_title, :discontinue_on,
+      :talk_type, :event_time, :event_place, :live_session_time, :live_session_end_time, :currency,
+      :is_free, :event_address, :video_preview_duration, uploads: []
     )
   end
 
@@ -82,5 +84,11 @@ class ListingsController < ApplicationController
 
   def check_owner
     redirect_to listing_path(@listing), notice: 'Unauthorized' if @listing.owner != current_user
+  end
+
+  def check_profile_data_missing
+    if !is_admin? && incomplete_profile?
+      redirect_to edit_profile_path(current_profile), notice: 'Complete your profile!'
+    end
   end
 end

@@ -55,11 +55,18 @@
     </div>
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-8">
         <div class="form-group">
           <%= f.label :uploads, 'Upload Video/Image' %>
           <%= f.file_field :uploads, multiple: true, class: 'form-control' %>
           <small>Upload maximum 4 images/videos</small>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <%= f.label :video_preview_duration %>
+          <%= f.select :video_preview_duration, options_for_select(Listing.video_preview_durations.map { |k, v| [k.humanize, v] }, @listing.video_preview_duration),
+                       {}, { class: 'form-control' } %>
         </div>
       </div>
     </div>
@@ -81,8 +88,24 @@
       </div>
       <div class="col-6">
         <div class="form-group">
+          <%= f.label :is_free %>
+          <%= f.check_box :is_free, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
           <%= f.label :available_on %>
           <%= f.datetime_field :available_on, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <%= f.label :event_address %>
+          <%= f.text_field :event_address, class: 'form-control' %>
+          <small>Full address for hangout purposes</small>
         </div>
       </div>
     </div>
