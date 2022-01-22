@@ -10,7 +10,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <%= f.label :service_id %>
-          <%= f.select :service_id, options_for_select(Service.all.map { |s| [s.title, s.id] }, @listing.service_id),
+          <%= f.select :service_id, options_for_select(services.map { |s| [s.title, s.id] }, @listing.service_id),
                        {}, { class: 'form-control' } %>
         </div>
       </div>
@@ -87,9 +87,9 @@
         </div>
       </div>
       <div class="col-6">
-        <div class="form-group">
-          <%= f.label :is_free %>
-          <%= f.check_box :is_free, class: 'form-control' %>
+        <div class="form-group free-listing-checkbox">
+          <%= f.check_box :is_free, class: 'form-control', id: 'free-listing' %>
+          <%= f.label :is_free, 'Free?' %>
         </div>
       </div>
     </div>

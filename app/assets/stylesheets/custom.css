@@ -1,0 +1,21 @@
+.profiler-results.profiler-no-controls{
+  display: none;
+}
+/*Home CSS*/
+.home-banner img{
+  width: 100%;
+}
+.navbar-brand.home img{
+  width: 65px;
+  height: auto;
+}
+/*Listing CSS*/
+.free-listing-checkbox input {
+  top: 30px;
+  position: absolute;
+  width: 40%;
+}
+.free-listing-checkbox label {
+  top: 30px;
+  position: absolute;
+}
