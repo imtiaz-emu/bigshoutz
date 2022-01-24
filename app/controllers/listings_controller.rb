@@ -71,11 +71,14 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    params.require(:listing).permit(:owner_id, :service_id, :name, :description, :available_on, :price,
+    parameters = params.require(:listing).permit(:owner_id, :service_id, :name, :description, :available_on, :price,
       :deleted_at, :meta_description, :meta_keywords, :promotionable, :meta_title, :discontinue_on,
       :talk_type, :event_time, :event_place, :live_session_time, :live_session_end_time, :currency,
       :is_free, :event_address, :video_preview_duration, uploads: []
     )
+    parameters[:video_preview_duration] = parameters[:video_preview_duration].to_i
+
+    parameters
   end
 
   def check_user_type

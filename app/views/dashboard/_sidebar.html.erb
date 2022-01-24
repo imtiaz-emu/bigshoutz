@@ -13,7 +13,7 @@
           <i class="fa fa-gears"></i> Services
         </a>
       <% end %>
-      <% unless is_fan? %>
+      <% if is_celebrity? || is_talent? %>
         <a href="<%= listings_dashboard_index_path %>" class="nav-link <%= active_sidebar('listings') %>">
           <i class="fa fa-database"></i> Listings
         </a>

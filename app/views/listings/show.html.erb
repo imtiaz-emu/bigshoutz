@@ -32,7 +32,13 @@
       <div class="box">
         <h1 class="text-center"><%= @listing.name %></h1>
         <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to listing details</a></p>
-        <p class="price"><%= @listing.currency %> <%= @listing.price %></p>
+        <p class="price">
+          <% if @listing.is_free? %>
+            Free
+          <% else %>
+            <%= @listing.currency %> <%= @listing.price %>
+          <% end %>
+        </p>
         <p class="text-center buttons">
           <%= link_to "javascript:void(0)" do %>
             <i class="fa fa-2x fa-thumbs-o-up"></i>
@@ -68,6 +74,9 @@
         <li><strong>Event Time: </strong><%= @listing.event_time.strftime('%d-%m-%Y at %I:%M%p') %></li>
       <% end %>
       <li><strong>Event Place: </strong><%= @listing.event_place %></li>
+      <% if @listing.event_address.present? %>
+        <li><strong>Event Address: </strong><%= @listing.event_address %></li>
+      <% end %>
     </ul>
     <% if @listing.live_session_time.present? %>
       <h4>Live session details</h4>

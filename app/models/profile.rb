@@ -12,6 +12,9 @@
 #  about_me      :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  fb_link       :string
+#  twitter_link  :string
+#  insta_link    :string
 #
 class Profile < ApplicationRecord
   belongs_to :user
