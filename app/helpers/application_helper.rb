@@ -18,6 +18,6 @@ module ApplicationHelper
   end
 
   def services
-    Service.all
+    Service.active
   end
 end

@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) || dashboard_index_path
   end
 
+  def incomplete_profile?
+    current_profile.first_name.nil? || current_profile.last_name.nil?
+  end
+
   def render_404
     render template: 'shared/404', layout: 'error_404', status: 404
   end
