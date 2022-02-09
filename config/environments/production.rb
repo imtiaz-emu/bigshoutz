@@ -127,7 +127,6 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
       :address              => "mail.privateemail.com",
       :port                 => 587,
-      :domain               => "bigshoutz.com",
       :user_name            => ENV['BIGSHOUTZ_EMAIL'],
       :password             => ENV['BIGSHOUTZ_EMAIL_PASSWORD'],
       :authentication       => "plain",
