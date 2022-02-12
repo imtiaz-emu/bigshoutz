@@ -21,6 +21,17 @@ Bundler.require(*Rails.groups)
 
 module Bigshoutz
   class Application < Rails::Application
+    config.before_configuration do
+      if Rails.env.production?
+        env_file = '/home/ubuntu/bigshoutz/shared/config/env.yml'
+      else
+        env_file = File.join(Rails.root, 'config', 'env.yml')
+      end
+
+      YAML.load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exists?(env_file)
+    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
