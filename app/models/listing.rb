@@ -53,6 +53,10 @@ class Listing < ApplicationRecord
     uploads.select { |upload| upload.content_type.include?('image') }
   end
 
+  def all_votes(user = nil)
+    user ? votes.where(user_id: user.id) : votes
+  end
+
   private
 
   def price_is_present?

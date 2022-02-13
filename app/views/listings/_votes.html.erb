@@ -1,0 +1,53 @@
+<% if current_user.present? %>
+  <p class="text-center buttons">
+    <% user_vote = @listing.all_votes(current_user)&.first %>
+
+    <% if user_vote.present? %>
+      <!--user voted UP, then clicking on Upvote will destroy the vote-->
+      <!--and clicking on Downvote will edit the vote-->
+      <% if user_vote.up? %>
+        <%= link_to listing_vote_path(@listing, user_vote), method: :delete, remote: true do %>
+          <i class="fa fa-2x fa-thumbs-up"></i>
+        <% end %>
+        <%= link_to listing_vote_path(@listing, user_vote), remote: true do %>
+          <i class="fa fa-2x fa-thumbs-o-down"></i>
+        <% end %>
+      <!--user voted DOWN, then clicking on Downvote will destroy the vote-->
+      <!--and clicking on Upvote will edit the vote-->
+      <% else %>
+        <%= link_to listing_vote_path(@listing, user_vote), remote: true do %>
+          <i class="fa fa-2x fa-thumbs-o-up"></i>
+        <% end %>
+        <%= link_to listing_vote_path(@listing, user_vote), method: :delete, remote: true do %>
+          <i class="fa fa-2x fa-thumbs-down"></i>
+        <% end %>
+      <% end %>
+    <!--user didn't vote this listing, so clicking on Up/Down-->
+    <!--will create a new for this listing by current user -->
+    <% else %>
+      <%= link_to listing_votes_path(@listing, vote_type: 1), remote: true do %>
+        <i class="fa fa-2x fa-thumbs-o-up"></i>
+      <% end %>
+      <%= link_to listing_votes_path(@listing, vote_type: 0), remote: true do %>
+        <i class="fa fa-2x fa-thumbs-o-down"></i>
+      <% end %>
+    <% end %>
+
+    <a href="basket.html" class="btn btn-outline-primary">
+      <i class="fa fa-heart"></i> Add to Cart
+    </a>
+  </p>
+<% else %>
+  <p class="text-center buttons">
+    <%= link_to 'javascript:void(0)' do %>
+      <i class="fa fa-2x fa-thumbs-o-up"></i>
+    <% end %>
+    <%= link_to 'javascript:void(0)' do %>
+      <i class="fa fa-2x fa-thumbs-o-down"></i>
+    <% end %>
+
+    <a href="basket.html" class="btn btn-outline-primary">
+      <i class="fa fa-heart"></i> Add to Cart
+    </a>
+  </p>
+<% end %>

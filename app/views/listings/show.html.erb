@@ -39,17 +39,8 @@
             <%= @listing.currency %> <%= @listing.price %>
           <% end %>
         </p>
-        <p class="text-center buttons">
-          <%= link_to "javascript:void(0)" do %>
-            <i class="fa fa-2x fa-thumbs-o-up"></i>
-          <% end %>
-          <%= link_to "javascript:void(0)" do %>
-            <i class="fa fa-2x fa-thumbs-o-down"></i>
-          <% end %>
-          <a href="basket.html" class="btn btn-outline-primary">
-            <i class="fa fa-heart"></i> Add to Cart
-          </a>
-        </p>
+
+        <%= render 'votes' %>
       </div>
 
       <% unless @listing.has_video? %>
