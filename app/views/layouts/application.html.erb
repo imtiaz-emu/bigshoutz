@@ -20,8 +20,15 @@
   <body>
     <%= render 'shared/header' %>
 
-    <%= render 'shared/notices', type: 'info', notice: notice %>
-    <%= render 'shared/notices', type: 'warning', notice: alert %>
+    <div class="notice-section">
+      <div id="info-notice">
+        <%= render 'shared/notices', type: 'info', notice: notice %>
+      </div>
+
+      <div id="warning-notice">
+        <%= render 'shared/notices', type: 'warning', notice: alert %>
+      </div>
+    </div>
 
     <div id="all">
       <div id="content">

@@ -6,17 +6,14 @@ class VotesController < ApplicationController
 
   # POST /listings or /listings.json
   def create
-    owner = User.find_by(id: params[:listing][:owner_id].presence) || current_user
-    @listing = owner.listings.new(listing_params)
+    @vote = @listing.votes.new(voting_params)
 
-    respond_to do |format|
-      if @listing.save
-        format.html { redirect_to @listing, notice: "Listing was successfully created." }
-        format.json { render :show, status: :created, location: @listing }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
-      end
+    if @listing.owner == current_user
+      @error = 'You cannot vote your own listing'
+    elsif @vote.save
+      @error = nil
+    else
+      @error = @vote.errors.full_messages.to_sentence
     end
   end
 
@@ -45,22 +42,15 @@ class VotesController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_listing
-    @listing = Listing.find(params[:id])
+    @listing = Listing.find(params[:listing_id])
   end
 
-  def listing_params
-    parameters = params.require(:listing).permit(:owner_id, :service_id, :name, :description, :available_on, :price,
-      :deleted_at, :meta_description, :meta_keywords, :promotionable, :meta_title, :discontinue_on,
-      :talk_type, :event_time, :event_place, :live_session_time, :live_session_end_time, :currency,
-      :is_free, :event_address, :video_preview_duration, uploads: []
-    )
-    parameters[:video_preview_duration] = parameters[:video_preview_duration].to_i
-
-    parameters
-  end
-
-  def check_user_type
-    redirect_to listings_path, notice: 'Unauthorized' if is_fan?
+  def voting_params
+    vote_type = params[:vote_type].to_i
+    {
+      user_id: current_user.id,
+      vote_type: vote_type > 1 ? nil : !vote_type.zero?
+    }
   end
 
   def check_owner

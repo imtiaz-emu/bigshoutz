@@ -40,7 +40,9 @@
           <% end %>
         </p>
 
-        <%= render 'votes' %>
+        <div id="votes-section">
+          <%= render 'votes' %>
+        </div>
       </div>
 
       <% unless @listing.has_video? %>

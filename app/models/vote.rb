@@ -2,5 +2,15 @@ class Vote < ApplicationRecord
   belongs_to  :user
   belongs_to  :listing
 
-  enum vote_type: { up: 1, down: 0 }
+  validates :vote_type, inclusion: { in: %w[ up down ] }
+
+  enum vote_type: { up: true, down: false }
+
+  after_save :update_listing
+
+  private
+
+  def update_listing
+    self.listing.update_column(:vote_count, self.listing.votes.length)
+  end
 end
