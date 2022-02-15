@@ -7,6 +7,7 @@ class Vote < ApplicationRecord
   enum vote_type: { up: true, down: false }
 
   after_save :update_listing
+  after_destroy :update_listings
 
   private
 

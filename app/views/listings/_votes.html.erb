@@ -37,6 +37,10 @@
       <i class="fa fa-heart"></i> Add to Cart
     </a>
   </p>
+
+  <p class="text-center">
+    <i class="fa fa-heart"> <%= "#{@listing.vote_count} Votes" %></i>
+  </p>
 <% else %>
   <p class="text-center buttons">
     <%= link_to 'javascript:void(0)' do %>
@@ -49,5 +53,9 @@
     <a href="basket.html" class="btn btn-outline-primary">
       <i class="fa fa-heart"></i> Add to Cart
     </a>
+  </p>
+
+  <p class="text-center">
+    <i class="fa fa-heart"> <%= "#{@listing.vote_count} Votes" %></i>
   </p>
 <% end %>
