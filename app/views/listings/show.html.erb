@@ -32,6 +32,12 @@
       <div class="box">
         <h1 class="text-center"><%= @listing.name %></h1>
         <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to listing details</a></p>
+
+        <% listing_owner = @listing.owner.profile %>
+        <p class="listing-user text-center">
+          By <%= link_to listing_owner.full_name, profile_path(listing_owner) %>
+        </p>
+
         <p class="price">
           <% if @listing.is_free? %>
             Free

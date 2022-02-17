@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def current_profile
-    current_user.profile
+    current_user&.profile
   end
 
   def active_sidebar(nav)

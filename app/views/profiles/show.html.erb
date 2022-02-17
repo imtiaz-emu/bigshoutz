@@ -36,3 +36,12 @@
     </div>
   </div>
 </div>
+
+<div class="row products">
+  <div class="col-12">
+    <h2>User Listings</h2>
+  </div>
+  <% @listings.each do |listing| %>
+    <%= render 'listings/listing', listing: listing %>
+  <% end %>
+</div>
