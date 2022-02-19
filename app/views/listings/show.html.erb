@@ -32,6 +32,12 @@
       <div class="box">
         <h1 class="text-center"><%= @listing.name %></h1>
         <p class="goToDescription"><a href="#details" class="scroll-to">Scroll to listing details</a></p>
+
+        <% listing_owner = @listing.owner.profile %>
+        <p class="listing-user text-center">
+          By <%= link_to listing_owner.full_name, profile_path(listing_owner) %>
+        </p>
+
         <p class="price">
           <% if @listing.is_free? %>
             Free
@@ -39,17 +45,10 @@
             <%= @listing.currency %> <%= @listing.price %>
           <% end %>
         </p>
-        <p class="text-center buttons">
-          <%= link_to "javascript:void(0)" do %>
-            <i class="fa fa-2x fa-thumbs-o-up"></i>
-          <% end %>
-          <%= link_to "javascript:void(0)" do %>
-            <i class="fa fa-2x fa-thumbs-o-down"></i>
-          <% end %>
-          <a href="basket.html" class="btn btn-outline-primary">
-            <i class="fa fa-heart"></i> Add to Cart
-          </a>
-        </p>
+
+        <div id="votes-section">
+          <%= render 'votes' %>
+        </div>
       </div>
 
       <% unless @listing.has_video? %>

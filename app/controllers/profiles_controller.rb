@@ -1,8 +1,11 @@
 class ProfilesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[ show ]
   before_action :set_profile
   before_action :editing_others_profile?, only: %i[edit]
 
-  def show; end
+  def show
+    @listings = @profile.user.listings
+  end
 
   def edit; end
 

@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   end
 
   resources :services
-  resources :listings
+  resources :listings do
+    resources :votes, only: %i[create update destroy]
+  end
   resources :dashboard, only: %i[index] do
     collection do
       get 'listings'

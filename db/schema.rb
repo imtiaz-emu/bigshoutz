@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_20_145143) do
+ActiveRecord::Schema.define(version: 2022_01_28_155632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2022_01_20_145143) do
     t.boolean "is_free", default: false
     t.string "event_address"
     t.integer "video_preview_duration"
+    t.integer "vote_count", default: 0
     t.index ["available_on"], name: "index_listings_on_available_on"
     t.index ["deleted_at"], name: "index_listings_on_deleted_at"
     t.index ["discontinue_on"], name: "index_listings_on_discontinue_on"
@@ -133,6 +134,16 @@ ActiveRecord::Schema.define(version: 2022_01_20_145143) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "listing_id"
+    t.boolean "vote_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["listing_id"], name: "index_votes_on_listing_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

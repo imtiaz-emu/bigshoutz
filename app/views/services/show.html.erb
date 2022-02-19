@@ -7,9 +7,11 @@
       <br>
       <i class="fa fa-lightbulb-o"></i> <%= @service.active ? 'Active' : 'Inactive' %>
     </p>
-    <div class="image">
-      <%= image_tag @service.image, class: 'img-fluid' %>
-    </div>
+    <% if @service.image.attached? %>
+      <div class="image">
+        <%= image_tag @service.image, class: 'img-fluid' %>
+      </div>
+    <% end %>
     <p class="intro"><%= @service.description %></p>
   </div>
 
