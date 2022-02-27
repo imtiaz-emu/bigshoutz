@@ -39,7 +39,7 @@
   </p>
 
   <p class="text-center">
-    <i class="fa fa-heart"> <%= "#{@listing.vote_count} Votes" %></i>
+    <i class="fa fa-heart"> <%= vote_numbers(@listing) %></i>
   </p>
 <% else %>
   <p class="text-center buttons">
