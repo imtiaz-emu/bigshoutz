@@ -41,6 +41,12 @@
               <%= yield %>
             </div>
           </div>
+
+          <% if params[:controller] == 'listings' && params[:action] == 'show' %>
+            <div class="row" id="listing-comments">
+              <%= render 'comments/all', comments: @listing.comments %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

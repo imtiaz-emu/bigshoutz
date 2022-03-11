@@ -1,0 +1,60 @@
+<div id="blog-post" class="col-lg-12">
+  <div class="box">
+    <div id="comments">
+      <h4><%= comments.length %> comments</h4>
+      <% comments.each do |comment| %>
+        <% owner_profile = comment.user.profile %>
+        <div class="row comment">
+          <div class="col-md-3 col-lg-2 text-center text-md-center">
+            <p>
+              <%= image_tag owner_profile.photo&.variant(resize: '620x410') || 'no_photo.jpg',
+                alt: "#{owner_profile.full_name} photo", class: 'img-fluid rounded-circle'
+              %>
+            </p>
+          </div>
+          <div class="col-md-9 col-lg-10">
+            <h5><%= owner_profile.full_name %></h5>
+            <p class="posted"><i class="fa fa-clock-o"></i> <%= comment.updated_at %></p>
+            <p><%= comment.description %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- /#comments-->
+    <div id="comment-form">
+      <h4>Leave comment</h4>
+      <form>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name">Name <span class="required">*</span></label>
+              <input id="name" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">Email <span class="required">*</span></label>
+              <input id="email" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="comment">Comment <span class="required">*</span></label>
+              <textarea id="comment" rows="4" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- /#comment-form-->
+  </div>
+</div>
