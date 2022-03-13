@@ -13,7 +13,7 @@ class VotesController < ApplicationController
     elsif @vote.save
       @error = nil
     else
-      @error = @vote.errors.full_messages.to_sentence
+      @error = full_error_messages(@vote)
     end
   end
 
@@ -24,7 +24,7 @@ class VotesController < ApplicationController
     elsif @vote.update({vote_type: !Vote.vote_types[@vote.vote_type]})
       @error = nil
     else
-      @error = @vote.errors.full_messages.to_sentence
+      @error = full_error_messages(@vote)
     end
   end
 

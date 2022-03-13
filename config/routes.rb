@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   resources :services
   resources :listings do
     resources :votes, only: %i[create update destroy]
+    resources :comments, only: %i[create update destroy edit]
   end
+
   resources :dashboard, only: %i[index] do
     collection do
       get 'listings'

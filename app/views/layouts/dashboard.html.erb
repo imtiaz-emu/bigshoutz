@@ -43,8 +43,10 @@
           </div>
 
           <% if params[:controller] == 'listings' && params[:action] == 'show' %>
-            <div class="row" id="listing-comments">
-              <%= render 'comments/all', comments: @listing.comments %>
+            <div class="row">
+              <div id="comments-box" class="col-lg-12">
+                <%= render 'comments/layout', comments: @listing.comments %>
+              </div>
             </div>
           <% end %>
         </div>

@@ -32,4 +32,8 @@ class ApplicationController < ActionController::Base
       'dashboard'
     end
   end
+
+  def full_error_messages(object)
+    object.errors.full_messages.to_sentence
+  end
 end

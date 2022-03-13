@@ -1,0 +1,19 @@
+<h4>Leave comment</h4>
+<%= form_for [@listing, comment], remote: true do |f| %>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, autocomplete: 'off', class: 'form-control', rows: 3, required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button class="btn btn-primary" type="submit">
+        <i class="fa fa-comment-o"></i> Post comment
+      </button>
+    </div>
+  </div>
+<% end %>

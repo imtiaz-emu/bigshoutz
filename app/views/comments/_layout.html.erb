@@ -1,0 +1,9 @@
+<div class="box">
+  <div id="comments-list">
+    <%= render 'comments/all', comments: comments %>
+  </div>
+
+  <div id="comment-form">
+    <%= render 'comments/form', comment: defined?(@comment) ? @comment : Comment.new %>
+  </div>
+</div>
