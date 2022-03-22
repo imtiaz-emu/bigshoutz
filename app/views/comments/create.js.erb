@@ -2,4 +2,5 @@
   $('#warning-notice').html('<%=j render 'shared/notices', type: 'warning', notice: @error %>')
 <% else %>
   $('#comments-box').html('<%=j render 'comments/layout', comments: @comments %>')
+  $('textarea[name="comment[description]"]').val('');
 <% end %>

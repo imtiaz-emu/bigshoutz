@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_listing
   before_action :set_comment, only: %i[ edit update destroy ]
-  after_action :load_comments, only: %i[create update destroy]
 
   respond_to :js
 
@@ -14,16 +13,19 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     @error = @comment.save ? nil : full_error_messages(@comment)
+    load_comments
   end
 
   # PATCH/PUT /listings/:listing_id/comments/:id
   def update
     @error = @comment.update(comment_params) ? nil : full_error_messages(@comment)
+    load_comments
   end
 
   # DELETE /listings/:listing_id/comments/:id
   def destroy
     @error = @comment.destroy ? nil : 'Some error occurred!'
+    load_comments
   end
 
   private
