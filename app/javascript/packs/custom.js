@@ -24,4 +24,8 @@ $(document).on('turbolinks:load', function() {
     $(`input[name="listing[${property}]"]`).attr('disabled', disable);
     $(`input[name="listing[${property}]"]`).val(value);
   }
+
+  $('#comment-cancel').click(function () {
+    $('textarea[name="comment[description]"]').val('');
+  })
 });

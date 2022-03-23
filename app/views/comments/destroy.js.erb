@@ -1,5 +1,6 @@
 <% if @error %>
   $('#warning-notice').html('<%=j render 'shared/notices', type: 'warning', notice: @error %>')
 <% else %>
-  $('#comments-box').html('<%=j render 'comments/layout', comments: @comments %>')
+  $('#comments-list').html('<%=j render 'comments/all', comments: @comments %>')
+  $('#comment-form').html('<%=j render 'comments/form', comment: Comment.new %>')
 <% end %>

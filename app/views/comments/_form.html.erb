@@ -10,6 +10,11 @@
 
   <div class="row">
     <div class="col-md-12 text-right">
+      <% unless comment.new_record? %>
+        <%= link_to 'javascript:void(0)', id: 'comment-cancel', class: 'btn btn-outline-primary' do %>
+          <i class="fa fa-close"></i> Cancel
+        <% end %>
+      <% end %>
       <button class="btn btn-primary" type="submit">
         <i class="fa fa-comment-o"></i> Post comment
       </button>
