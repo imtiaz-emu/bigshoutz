@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index show ]
   before_action :check_user_type, only: %i[ create new ]
   before_action :check_profile_data_missing, only: %i[ create new ]
-  before_action :set_listing, only: %i[ show edit update destroy ]
+  before_action :set_listing, only: %i[ edit update destroy ]
   before_action :check_owner, only: %i[ edit update destroy ]
 
   # GET /listings or /listings.json
@@ -15,6 +15,7 @@ class ListingsController < ApplicationController
 
   # GET /listings/1 or /listings/1.json
   def show
+    @listing = Listing.includes(comments: :user, owner: :profile).find(params[:id])
   end
 
   # GET /listings/new

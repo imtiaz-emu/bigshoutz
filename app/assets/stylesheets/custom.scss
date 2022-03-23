@@ -52,3 +52,10 @@
 #votes-section .buttons a:hover, #votes-section .buttons a:focus{
   text-decoration: none;
 }
+#comments-list .comment img{
+  width: 102px;
+  height: 102px;
+}
+#comments-list .comment-actions a:hover{
+  text-decoration: none;
+}

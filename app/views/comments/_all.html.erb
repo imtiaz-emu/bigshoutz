@@ -1,0 +1,33 @@
+<h4><%= comments.length %> comments</h4>
+<% comments.each do |comment| %>
+  <% owner_profile = comment.user.profile %>
+  <div class="row comment" id="comment_id_<%= comment.id %>">
+    <div class="col-md-3 col-lg-2 text-center text-md-center">
+      <p>
+        <%= image_tag owner_profile.photo&.variant(resize: '620x410') || 'no_photo.jpg',
+                      alt: "#{owner_profile.full_name} photo", class: 'img-fluid rounded-circle'
+        %>
+      </p>
+    </div>
+    <div class="col-md-9 col-lg-10">
+      <%= link_to profile_path(owner_profile) do %>
+        <h5><%= owner_profile.full_name %></h5>
+      <% end %>
+      <p class="posted">
+        <i class="fa fa-clock-o"></i>
+        <%= distance_of_time_in_words(Time.zone.now, comment.updated_at) %>
+      </p>
+      <p><%= comment.description %></p>
+      <% if is_admin? || owner_of?(comment) %>
+        <p class="comment-actions">
+          <%= link_to edit_listing_comment_path(@listing, comment), class: 'edit-comment', remote: true do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>
+          <%= link_to listing_comment_path(@listing, comment), class: 'delete-comment', method: :delete, remote: true do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

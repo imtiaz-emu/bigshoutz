@@ -34,6 +34,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :listings, class_name: 'Listing', foreign_key: 'owner_id'
   has_many :votes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   scope :celebrities, -> { joins(:roles, :profile).where(roles: { name: %w[Celebrity Talent] }) }
   scope :celebrities_with_complete_profile, -> {

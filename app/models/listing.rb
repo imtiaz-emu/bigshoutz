@@ -31,6 +31,7 @@ class Listing < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   belongs_to :service
   has_many :votes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many_attached :uploads, dependent: :destroy
 
   validates :uploads, content_type: { in: %i[gif png jpg jpeg mp4 3gp mkv],
