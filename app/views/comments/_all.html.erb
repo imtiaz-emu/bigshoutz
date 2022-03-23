@@ -10,7 +10,9 @@
       </p>
     </div>
     <div class="col-md-9 col-lg-10">
-      <h5><%= owner_profile.full_name %></h5>
+      <%= link_to profile_path(owner_profile) do %>
+        <h5><%= owner_profile.full_name %></h5>
+      <% end %>
       <p class="posted">
         <i class="fa fa-clock-o"></i>
         <%= distance_of_time_in_words(Time.zone.now, comment.updated_at) %>
