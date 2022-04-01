@@ -6,7 +6,17 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.new(user_params)
+    @user.skip_confirmation_notification!
 
+    respond_to do |format|
+      if @user.save
+        UserMailer.with(user: @user).new_user_email.deliver_later
+        format.html { redirect_to users_dashboard_index_path, notice: "User was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
