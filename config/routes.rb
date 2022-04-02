@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
+  scope '/admin' do
+    resources :users, only: %i[new create]
+  end
 
   resources :profiles, only: %i[show edit update] do
     member do

@@ -53,7 +53,7 @@ class User < ApplicationRecord
     role = Role.find_by(name: self.role&.capitalize)
     role = Role.find_by(name: 'Fan') if role.nil?
 
-    return if self&.roles&.include?(role)
+    return if self&.roles&.length > 0
 
     self.roles << role
   end
