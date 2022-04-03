@@ -12,6 +12,10 @@
         <a href="<%= services_dashboard_index_path %>" class="nav-link <%= active_sidebar('services') %>">
           <i class="fa fa-gears"></i> Services
         </a>
+
+        <a href="<%= addons_dashboard_index_path %>" class="nav-link <%= active_sidebar('addons') %>">
+          <i class="fa fa-plus-circle"></i> Addons
+        </a>
       <% end %>
       <% if is_celebrity? || is_talent? %>
         <a href="<%= listings_dashboard_index_path %>" class="nav-link <%= active_sidebar('listings') %>">

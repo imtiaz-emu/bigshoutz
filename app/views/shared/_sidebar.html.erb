@@ -1,4 +1,4 @@
-<% if %w[services users].include?(params[:controller]) %>
+<% if %w[services users addons].include?(params[:controller]) %>
   <%= render "dashboard/sidebar" %>
 <% else %>
   <%= render "#{params[:controller]}/sidebar" %>

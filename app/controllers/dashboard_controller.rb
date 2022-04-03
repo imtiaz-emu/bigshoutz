@@ -15,6 +15,10 @@ class DashboardController < ApplicationController
     @services = Service.all
   end
 
+  def addons
+    @addons = Addon.all
+  end
+
   private
 
   def check_authorization
