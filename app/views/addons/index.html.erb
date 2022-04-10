@@ -19,7 +19,7 @@
         <th>Price</th>
         <th>Stock</th>
         <th>Status</th>
-        <th>Action</th>
+        <th colspan="3">Action</th>
       </tr>
       </thead>
       <tbody>
@@ -29,9 +29,13 @@
           <td><%= addon.name %></td>
           <td><%= addon.description %></td>
           <td>
-            <%= image_tag addon.image&.variant(resize: '100x100'), alt: "#{addon.name} photo", class: 'img-fluid' %>
+            <% if addon.image.attached? %>
+              <%= image_tag addon.image&.variant(resize: '100x100'), alt: "#{addon.name} photo", class: 'img-fluid' %>
+            <% else %>
+              <i class="fa fa-unlink"></i>
+            <% end %>
           </td>
-          <td><%= addon.price %></td>
+          <td><%= addon.price %> (<%= addon.currency %>)</td>
           <td><%= addon.stock %></td>
           <td>
             <span class="badge badge-<%= object_statuses[addon.is_active.to_s] %>">
