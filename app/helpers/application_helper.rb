@@ -24,4 +24,8 @@ module ApplicationHelper
   def owner_of?(object)
     current_user == object.user
   end
+
+  def object_statuses
+    { 'true': 'success', 'false': 'danger' }.with_indifferent_access.freeze
+  end
 end

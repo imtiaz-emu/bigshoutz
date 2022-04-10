@@ -68,8 +68,4 @@ class ServicesController < ApplicationController
   def service_params
     params.require(:service).permit(:title, :description, :image, :active)
   end
-
-  def authenticate_admin
-    redirect_to root_path, notice: 'Unauthorized' unless is_admin?
-  end
 end

@@ -30,7 +30,7 @@
             <%= image_tag service.image&.variant(resize: '100x100'), alt: "#{service.title} photo", class: 'img-fluid' %>
           </td>
           <td>
-            <span class="badge badge-<%= service_statuses[service.active.to_s] %>">
+            <span class="badge badge-<%= object_statuses[service.active.to_s] %>">
               <%= service.active ? 'Active' : 'Inactive' %>
             </span>
           </td>

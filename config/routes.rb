@@ -1,3 +1,6 @@
+# == Route Map
+#
+
 Rails.application.routes.draw do
   devise_for :users
   scope '/admin' do
@@ -11,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :services
+  resources :addons
+
   resources :listings do
     resources :votes, only: %i[create update destroy]
     resources :comments, only: %i[create update destroy edit]
@@ -21,6 +26,7 @@ Rails.application.routes.draw do
       get 'listings'
       get 'users'
       get 'services'
+      get 'addons'
     end
   end
 

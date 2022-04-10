@@ -1,0 +1,31 @@
+<div id="blog-listing">
+  <div class="post">
+    <h2><%= @addon.name %></h2>
+    <hr>
+    <p class="date-comments">
+      <i class="fa fa-calendar-o"></i> <%= @addon.created_at %>
+      <br>
+      <i class="fa fa-lightbulb-o"></i> <%= @addon.is_active ? 'Active' : 'Inactive' %>
+    </p>
+    <% if @addon.image.attached? %>
+      <div class="image">
+        <%= image_tag @addon.image, class: 'img-fluid' %>
+      </div>
+    <% end %>
+    <p class="intro"><%= @addon.description %></p>
+    <p><%= @addon.price %> (<%= @addon.currency %>)</p>
+    <p><%= @addon.stock %></p>
+  </div>
+
+  <div class="pager d-flex justify-content-between">
+    <%= link_to addons_path, class: 'btn btn-outline-primary' do %>
+      <i class="fa fa-close"></i> Cancel
+    <% end %>
+    <%= link_to edit_addon_path(@addon), class: 'btn btn-outline-primary' do %>
+      <i class="fa fa-pencil"></i> Edit
+    <% end %>
+    <%= link_to addon_path(@addon), method: :delete, class: 'btn btn-outline-danger' do %>
+      <i class="fa fa-trash"></i> Delete
+    <% end %>
+  </div>
+</div>

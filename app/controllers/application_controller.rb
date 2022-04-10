@@ -36,4 +36,8 @@ class ApplicationController < ActionController::Base
   def full_error_messages(object)
     object.errors.full_messages.to_sentence
   end
+
+  def authenticate_admin
+    redirect_to root_path, notice: 'Unauthorized' unless is_admin?
+  end
 end

@@ -17,6 +17,14 @@ end
 
 puts('2. Admin User created')
 
+%w[Upvote Downvote].each do |addon_name|
+  unless Addon.find_by(name: addon_name)
+    Addon.create(name: addon_name, description: Faker::Lorem.paragraph, price: 1.0)
+  end
+end
+
+puts('3. Addons created')
+
 # Create test Users, Services, Listings to populate the database
 # ['Hangout', 'Live Video'].each do |service|
 #   Service.new(title: service, description: Faker::Lorem.paragraph).save!

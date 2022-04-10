@@ -26,6 +26,7 @@
 #  is_free                :boolean          default(FALSE)
 #  event_address          :string
 #  video_preview_duration :integer
+#  vote_count             :integer          default(0)
 #
 class Listing < ApplicationRecord
   belongs_to :owner, class_name: 'User'

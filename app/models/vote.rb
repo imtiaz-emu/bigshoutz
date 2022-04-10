@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: votes
+#
+#  id         :bigint           not null, primary key
+#  user_id    :integer
+#  listing_id :integer
+#  vote_type  :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  total      :integer          default(1)
+#
 class Vote < ApplicationRecord
   belongs_to  :user
   belongs_to  :listing
