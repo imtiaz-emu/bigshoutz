@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :services
   resources :addons
+  resources :line_items
+  resources :carts
 
   resources :listings do
     resources :votes, only: %i[create update destroy]

@@ -34,6 +34,9 @@ class Listing < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many_attached :uploads, dependent: :destroy
+  has_many :line_items, as: :line_item_able
+
+  before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :uploads, content_type: { in: %i[gif png jpg jpeg mp4 3gp mkv],
                                       min: 1, max: 4,
@@ -68,6 +71,13 @@ class Listing < ApplicationRecord
       errors.add(:price, ' Cannot be blank')
     elsif self.currency.blank?
       errors.add(:currency, ' Cannot be blank')
+    end
+  end
+
+  def ensure_not_referenced_by_any_line_item
+    unless line_items.empty?
+      errors.add(:base, 'Line Items present')
+      throw :abort
     end
   end
 end
