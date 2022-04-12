@@ -23,8 +23,7 @@ class LineItemsController < ApplicationController
 
   # POST /line_items or /line_items.json
   def create
-    listing = Listing.find(params[:listing_id])
-    @line_item = @cart.line_items.build(listing: listing)
+    @line_item = line_item_builder
 
     respond_to do |format|
       if @line_item.save
@@ -60,13 +59,25 @@ class LineItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_line_item
-      @line_item = LineItem.find(params[:id])
+  # Use callbacks to share common setup or constraints between actions.
+  def set_line_item
+    @line_item = LineItem.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def line_item_params
+    params.require(:line_item).permit(:listing_id, :addon_id)
+  end
+
+  def line_item_builder
+    if params[:listing_id].present?
+      item = Listing.find(params[:listing_id])
+    elsif params[:addon_id].present?
+      item = Addon.find(params[:addon_id])
+    else
+      item = nil
     end
 
-    # Only allow a list of trusted parameters through.
-    def line_item_params
-      params.require(:line_item).permit(:product_id, :cart_id)
-    end
+    @cart.add_item(item)
+  end
 end
