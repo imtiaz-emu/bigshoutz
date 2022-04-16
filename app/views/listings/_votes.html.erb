@@ -33,9 +33,9 @@
       <% end %>
     <% end %>
 
-    <a href="<%= line_items_path(listing_id: @listing) %>" class="btn btn-outline-primary">
-      <i class="fa fa-heart"></i> Add to Cart
-    </a>
+    <%= link_to line_items_path(listing_id: @listing), method: :post, class: 'btn btn-outline-primary', remote: true do %>
+      <i class="fa fa-shopping-cart"></i> Add to cart
+    <% end %>
   </p>
 
   <p class="text-center">
@@ -50,9 +50,9 @@
       <i class="fa fa-2x fa-thumbs-o-down"></i>
     <% end %>
 
-    <a href="<%= line_items_path(listing_id: @listing) %>" class="btn btn-outline-primary">
-      <i class="fa fa-heart"></i> Add to Cart
-    </a>
+    <%= link_to line_items_path(listing_id: @listing), method: :post, class: 'btn btn-outline-primary', remote: true do %>
+      <i class="fa fa-shopping-cart"></i> Add to cart
+    <% end %>
   </p>
 
   <p class="text-center">

@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   before_action :authenticate_user!
+  before_action :set_cart
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   include ApplicationHelper
+  include CurrentCart
 
   layout :fetch_layout
 
@@ -28,6 +30,8 @@ class ApplicationController < ActionController::Base
   def fetch_layout
     if devise_controller? || params[:controller] == 'home'
       'application'
+    elsif params[:controller] == 'carts'
+      'without_sidebar'
     else
       'dashboard'
     end

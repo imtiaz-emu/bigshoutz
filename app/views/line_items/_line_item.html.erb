@@ -1,0 +1,59 @@
+<% line_items.each do |line_item| %>
+  <% line_item_able = line_item.line_item_able %>
+  <% if line_item_able.is_a?(Listing) %>
+    <tr>
+      <td>
+        <% if line_item_able.has_video? %>
+          <%= image_tag line_item_able.videos.sample.preview(resize_to_limit: [50, 50]) %>
+        <% else %>
+          <% image = line_item_able.images.sample %>
+          <% if image %>
+            <a href="<%= listing_path(line_item_able) %>">
+              <%= image_tag image.variant(resize_to_limit: [50, 50]), class: 'img-fluid' %>
+            </a>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <a href="<%= listing_path(line_item_able) %>">
+          <%= line_item_able.name %>
+        </a>
+      </td>
+      <td>
+        <input type="number" value="<%= line_item.quantity %>" class="form-control">
+      </td>
+      <td><%= number_to_currency(line_item_able.price) %></td>
+      <td>0.00</td>
+      <td><%= number_to_currency(line_item.total_price) %></td>
+      <td>
+        <%= link_to line_item_path(line_item), method: :delete, remote: true do %>
+          <i class="fa fa fa-trash"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% else %>
+    <tr>
+      <td>
+        <% image = line_item_able.image %>
+        <% if image %>
+          <a href="javascript:void(0)">
+            <%= image_tag image.variant(resize_to_limit: [50, 50]), class: 'img-fluid' %>
+          </a>
+        <% end %>
+      <td>
+        <%= line_item_able.name %>
+      </td>
+      <td>
+        <input type="number" value="<%= line_item.quantity %>" class="form-control">
+      </td>
+      <td><%= number_to_currency(line_item_able.price) %></td>
+      <td>0.00</td>
+      <td><%= number_to_currency(line_item.total_price) %></td>
+      <td>
+        <%= link_to line_item_path(line_item), method: :delete, remote: true do %>
+          <i class="fa fa fa-trash"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

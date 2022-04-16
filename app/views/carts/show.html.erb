@@ -6,7 +6,7 @@
           <div class="box">
             <form method="post" action="checkout1.html">
               <h1>Shopping cart</h1>
-              <p class="text-muted">You currently have 3 item(s) in your cart.</p>
+              <p class="text-muted">You currently have <%= @cart.line_items.length %> item(s) in your cart.</p>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -19,33 +19,12 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td><a href="#"><img src="img/detailsquare.jpg" alt="White Blouse Armani"></a></td>
-                    <td><a href="#">White Blouse Armani</a></td>
-                    <td>
-                      <input type="number" value="2" class="form-control">
-                    </td>
-                    <td>$123.00</td>
-                    <td>$0.00</td>
-                    <td>$246.00</td>
-                    <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                  </tr>
-                  <tr>
-                    <td><a href="#"><img src="img/basketsquare.jpg" alt="Black Blouse Armani"></a></td>
-                    <td><a href="#">Black Blouse Armani</a></td>
-                    <td>
-                      <input type="number" value="1" class="form-control">
-                    </td>
-                    <td>$200.00</td>
-                    <td>$0.00</td>
-                    <td>$200.00</td>
-                    <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                  </tr>
+                    <%= render 'line_items/line_item', line_items: @cart.line_items %>
                   </tbody>
                   <tfoot>
                   <tr>
                     <th colspan="5">Total</th>
-                    <th colspan="2">$446.00</th>
+                    <th colspan="2"><%= number_to_currency(@cart.total_price, unit: 'RM') %></th>
                   </tr>
                   </tfoot>
                 </table>
@@ -54,6 +33,9 @@
               <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
                 <div class="left"><a href="category.html" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
                 <div class="right">
+                  <%= link_to @cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' do %>
+                    <i class="fa fa-trash"></i> Empty cart
+                  <% end %>
                   <button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button>
                   <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></button>
                 </div>
@@ -73,19 +55,15 @@
                 <tbody>
                 <tr>
                   <td>Order subtotal</td>
-                  <th>$446.00</th>
-                </tr>
-                <tr>
-                  <td>Shipping and handling</td>
-                  <th>$10.00</th>
+                  <th><%= number_to_currency(@cart.total_price, unit: 'RM') %></th>
                 </tr>
                 <tr>
                   <td>Tax</td>
-                  <th>$0.00</th>
+                  <th>0.00</th>
                 </tr>
                 <tr class="total">
                   <td>Total</td>
-                  <th>$456.00</th>
+                  <th><%= number_to_currency(@cart.total_price, unit: 'RM') %></th>
                 </tr>
                 </tbody>
               </table>

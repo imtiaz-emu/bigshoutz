@@ -69,9 +69,9 @@
             <i class="fa fa-search"></i>
           </a>
           <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">
-            <a href="basket.html" class="btn btn-primary navbar-btn">
+            <a href="<%= cart_path(@cart) %>" class="btn btn-primary navbar-btn">
               <i class="fa fa-shopping-cart"></i>
-              <span>0 items in cart</span>
+              <span><%= @cart.line_items.length %> items in cart</span>
             </a>
           </div>
         </div>

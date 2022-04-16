@@ -45,9 +45,9 @@
       </p>
       <p class="buttons">
         <a href="<%= listing_path(listing) %>" class="btn btn-outline-secondary">View detail</a>
-        <a href="<%= line_items_path(listing_id: listing) %>" class="btn btn-primary">
-          <i class="fa fa-shopping-cart"></i>Add to cart
-        </a>
+        <%= link_to line_items_path(listing_id: listing), method: :post, class: 'btn btn-outline-primary', remote: true do %>
+          <i class="fa fa-shopping-cart"></i> Add to cart
+        <% end %>
       </p>
     </div>
   </div>
