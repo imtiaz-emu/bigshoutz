@@ -23,6 +23,8 @@ class Addon < ApplicationRecord
     attachable.variant :main, resize: '250x250'
   end
 
+  DEFAULT_ADDONS = %w[Upvote Downvote].freeze
+
   private
 
   def ensure_not_referenced_by_any_line_item

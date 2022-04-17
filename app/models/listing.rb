@@ -62,6 +62,12 @@ class Listing < ApplicationRecord
     user ? votes.where(user_id: user.id) : votes
   end
 
+  Service::DEFAULT_SERVICES.each do |service_name|
+    define_method :"is_#{service_name.parameterize.underscore}?" do
+      self.service.title == service_name
+    end
+  end
+
   private
 
   def price_is_present?
