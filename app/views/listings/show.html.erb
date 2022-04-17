@@ -42,7 +42,7 @@
           <% if @listing.is_free? %>
             Free
           <% else %>
-            <%= @listing.currency %> <%= @listing.price %>
+            <%= number_to_currency(@listing.price, unit: 'RM') %>
           <% end %>
         </p>
 

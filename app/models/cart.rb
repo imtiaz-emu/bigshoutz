@@ -9,6 +9,9 @@
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
 
+  accepts_nested_attributes_for :line_items, allow_destroy: true,
+                                reject_if: proc { |attrs| attrs['quantity'].blank? }
+
   def total_price
     line_items.to_a.sum { |item| item.total_price }
   end

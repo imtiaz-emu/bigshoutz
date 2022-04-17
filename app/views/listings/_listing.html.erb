@@ -41,7 +41,7 @@
         <a href="<%= listing_path(listing) %>"><%= listing.name %></a>
       </h3>
       <p class="price">
-        <del></del><%= listing.currency %> <%= listing.price %>
+        <del></del><%= number_to_currency(listing.price, unit: 'RM') %>
       </p>
       <p class="buttons">
         <a href="<%= listing_path(listing) %>" class="btn btn-outline-secondary">View detail</a>

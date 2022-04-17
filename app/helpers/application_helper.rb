@@ -28,4 +28,9 @@ module ApplicationHelper
   def object_statuses
     { 'true': 'success', 'false': 'danger' }.with_indifferent_access.freeze
   end
+
+  def number_to_currency(number, options ={})
+    options[:unit] = 'RM'
+    super
+  end
 end

@@ -1,5 +1,7 @@
-<% line_items.each do |line_item| %>
+<%= f.fields_for :line_items do |l| %>
+  <% line_item = l.object %>
   <% line_item_able = line_item.line_item_able %>
+
   <% if line_item_able.is_a?(Listing) %>
     <tr>
       <td>
@@ -20,7 +22,7 @@
         </a>
       </td>
       <td>
-        <input type="number" value="<%= line_item.quantity %>" class="form-control">
+        <%= l.number_field :quantity, class: 'form-control', min: 1 %>
       </td>
       <td><%= number_to_currency(line_item_able.price) %></td>
       <td>0.00</td>
@@ -44,7 +46,7 @@
         <%= line_item_able.name %>
       </td>
       <td>
-        <input type="number" value="<%= line_item.quantity %>" class="form-control">
+        <%= l.number_field :quantity, class: 'form-control', min: 1 %>
       </td>
       <td><%= number_to_currency(line_item_able.price) %></td>
       <td>0.00</td>

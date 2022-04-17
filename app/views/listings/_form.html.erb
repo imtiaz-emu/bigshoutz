@@ -72,20 +72,20 @@
     </div>
 
     <div class="row">
-      <div class="col-3">
+      <div class="col-6">
         <div class="form-group">
           <%= f.label :price %>
           <%= f.text_field :price, class: 'form-control', required: true %>
           <small>e.g. 72.10</small>
         </div>
       </div>
-      <div class="col-3">
-        <div class="form-group">
-          <%= f.label :currency %>
-          <%= f.select :currency, options_for_select(currency_list.map { |c| [c[:name], c[:code]] }, @listing.currency),
-                       {}, { class: 'form-control' } %>
-        </div>
-      </div>
+      <!--<div class="col-3">-->
+        <!--<div class="form-group">-->
+          <!--<%#= f.label :currency %>-->
+          <!--<%#= f.select :currency, options_for_select(currency_list.map { |c| [c[:name], c[:code]] }, @listing.currency),-->
+                       <!--{}, { class: 'form-control' } %>-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="col-6">
         <div class="form-group free-listing-checkbox">
           <%= f.check_box :is_free, class: 'form-control', id: 'free-listing' %>

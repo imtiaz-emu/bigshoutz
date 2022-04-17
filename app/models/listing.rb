@@ -69,8 +69,6 @@ class Listing < ApplicationRecord
 
     if self.price.blank?
       errors.add(:price, ' Cannot be blank')
-    elsif self.currency.blank?
-      errors.add(:currency, ' Cannot be blank')
     end
   end
 
