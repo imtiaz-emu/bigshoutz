@@ -37,7 +37,7 @@
     <tr>
       <td>
         <% image = line_item_able.image %>
-        <% if image %>
+        <% if image.attached? %>
           <a href="javascript:void(0)">
             <%= image_tag image.variant(resize_to_limit: [50, 50]), class: 'img-fluid' %>
           </a>

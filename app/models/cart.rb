@@ -17,13 +17,17 @@ class Cart < ApplicationRecord
   end
 
   # object can be either Listing or Addon
-  def add_item(object)
+  def add_item(object, quantity = nil)
     current_item = line_items.find_by(line_item_able_id: object.id, line_item_able_type: object.class.name)
 
     if current_item
-      current_item.quantity += 1
+      current_item.quantity += (quantity || 1)
     else
-      current_item = line_items.build(line_item_able_id: object.id, line_item_able_type: object.class.name)
+      current_item = line_items.build(
+        line_item_able_id: object.id,
+        line_item_able_type: object.class.name,
+        quantity: quantity || 1
+      )
     end
 
     current_item

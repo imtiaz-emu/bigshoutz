@@ -1,0 +1,25 @@
+<div id="vote-buy-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Buy Extra votes</h5>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body">
+        <%= form_for LineItem.new, remote: true do %>
+          <div class="form-group">
+            <%= label_tag 'Vote Type' %>
+            <%= select_tag 'addon_id', options_for_select(Addon.all.map { |addon| [addon.name, addon.id] }), class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= label_tag 'Quantity' %>
+            <%= number_field_tag 'quantity', 1, class: 'form-control' %>
+          </div>
+          <p class="text-center">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Add to cart</button>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
