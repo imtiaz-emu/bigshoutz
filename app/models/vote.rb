@@ -28,6 +28,7 @@ class Vote < ApplicationRecord
 
   def update_listing
     vote_count = self.listing.votes.group(:vote_type).sum(:total)
-    self.listing.update_column(:vote_count, vote_count['up'] - vote_count['down'])
+    vote_diff = (vote_count['up'] || 0) - (vote_count['down'] || 0)
+    self.listing.update_column(:vote_count, vote_diff)
   end
 end

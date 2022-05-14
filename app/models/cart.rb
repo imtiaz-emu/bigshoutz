@@ -17,7 +17,7 @@ class Cart < ApplicationRecord
   end
 
   # object can be either Listing or Addon
-  def add_item(object, quantity = nil)
+  def add_item(object, quantity = nil, addon_for_listing_id = nil)
     current_item = line_items.find_by(line_item_able_id: object.id, line_item_able_type: object.class.name)
 
     if current_item
@@ -26,7 +26,8 @@ class Cart < ApplicationRecord
       current_item = line_items.build(
         line_item_able_id: object.id,
         line_item_able_type: object.class.name,
-        quantity: quantity || 1
+        quantity: quantity || 1,
+        addon_for_listing_id: addon_for_listing_id
       )
     end
 

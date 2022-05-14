@@ -49,6 +49,6 @@ class LineItemsController < ApplicationController
       item = nil
     end
 
-    @cart.add_item(item, params[:quantity]&.to_i)
+    @cart.add_item(item, params[:quantity]&.to_i, params[:addon_for_listing_id])
   end
 end

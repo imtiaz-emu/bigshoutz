@@ -46,6 +46,8 @@ class Listing < ApplicationRecord
 
   enum video_preview_duration: { '5_Second': 1, '10_Second': 2 }
 
+  SORT_OPTIONS = %w[price name votes]
+
   def has_video?
     videos.any?
   end

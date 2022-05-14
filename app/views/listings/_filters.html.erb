@@ -1,0 +1,21 @@
+<div class="box info-bar" id="listing_filter">
+  <div class="row">
+    <div class="col-md-12 col-lg-4 products-showing">
+      Showing <strong><%= params[:num] %></strong> of <strong><%= @listings.length %></strong> products
+    </div>
+    <div class="col-md-12 col-lg-7 products-number-sort">
+      <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row">
+        <div class="products-number">
+          <strong>Show</strong>
+          <a href="javascript:void(0)" data-value="12" class="btn btn-sm btn-primary">12</a>
+          <a href="javascript:void(0)" data-value="24" class="btn btn-outline-secondary btn-sm">24</a>
+          <a href="javascript:void(0)" data-value="all" class="btn btn-outline-secondary btn-sm">All</a><span>products</span>
+        </div>
+        <div class="products-sort-by mt-2 mt-lg-0"><strong>Sort by</strong>
+          <%= select_tag 'sort_by', options_for_select(Listing::SORT_OPTIONS.map { |opt| [opt.capitalize, opt] }, params[:sort_by]),
+             { class: 'form-control' } %>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

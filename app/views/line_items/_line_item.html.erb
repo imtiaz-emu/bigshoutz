@@ -43,7 +43,9 @@
           </a>
         <% end %>
       <td>
-        <%= line_item_able.name %>
+        <%= line_item_able.name %> for <a href="<%= listing_path(line_item.addon_for_listing_id) %>">
+          <%= Listing.find(line_item.addon_for_listing_id).name %>
+        </a>
       </td>
       <td>
         <%= l.number_field :quantity, class: 'form-control', min: 1 %>

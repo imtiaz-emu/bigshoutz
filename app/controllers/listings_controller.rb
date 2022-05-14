@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index show ]
   before_action :check_user_type, only: %i[ create new ]
+  before_action :default_index_params, only: %i[ index ]
   before_action :check_profile_data_missing, only: %i[ create new ]
   before_action :set_listing, only: %i[ edit update destroy ]
   before_action :check_owner, only: %i[ edit update destroy ]
@@ -11,6 +12,9 @@ class ListingsController < ApplicationController
     @listings = Listing.includes(:service, :uploads_attachments).all
     @listings = @listings.where(owner_id: params[:u]) if params[:u].present?
     @listings = @listings.where(service_id: params[:s]) if params[:s].present?
+    @listings = @listings.order("vote_count DESC")
+    params.merge!(num: params[:num] || @listings.length || 12)
+    @listings = @listings.limit(params[:num])
   end
 
   # GET /listings/1 or /listings/1.json
@@ -94,5 +98,11 @@ class ListingsController < ApplicationController
     if !is_admin? && incomplete_profile?
       redirect_to edit_profile_path(current_profile), notice: 'Complete your profile!'
     end
+  end
+
+  def default_index_params
+    params.merge!(
+      sort_by: params[:sort_by] || 'votes'
+    )
   end
 end

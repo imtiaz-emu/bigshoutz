@@ -15,6 +15,7 @@
             <%= label_tag 'Quantity' %>
             <%= number_field_tag 'quantity', 1, class: 'form-control' %>
           </div>
+          <%= hidden_field_tag 'addon_for_listing_id', @listing.id %>
           <p class="text-center">
             <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Add to cart</button>
           </p>
