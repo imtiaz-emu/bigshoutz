@@ -12,8 +12,8 @@ class ListingsController < ApplicationController
     @listings = Listing.includes(:service, :uploads_attachments).all
     @listings = @listings.where(owner_id: params[:u]) if params[:u].present?
     @listings = @listings.where(service_id: params[:s]) if params[:s].present?
-    @listings = @listings.order("vote_count DESC")
-    params.merge!(num: params[:num] || @listings.length || 12)
+    @listings = @listings.order(sort_listings)
+    params.merge!(num: number_of_listing_to_show)
     @listings = @listings.limit(params[:num])
   end
 
@@ -104,5 +104,24 @@ class ListingsController < ApplicationController
     params.merge!(
       sort_by: params[:sort_by] || 'votes'
     )
+  end
+
+  def number_of_listing_to_show
+    return @listings.length if params[:num] == 'all'
+
+    params[:num] || @listings.length || 12
+  end
+
+  def sort_listings
+    case params[:sort_by]
+    when 'votes'
+      'vote_count DESC'
+    when 'price'
+      'price DESC'
+    when 'name'
+      'name DESC'
+    else
+      'vote_count DESC'
+    end
   end
 end
