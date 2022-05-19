@@ -49,7 +49,8 @@
   top: 30px;
   position: absolute;
 }
-#votes-section .buttons a:hover, #votes-section .buttons a:focus{
+#votes-section .buttons a:hover, #votes-section .buttons a:focus,
+.listing-tags .card-body a:hover, .listing-tags .card-body a:focus{
   text-decoration: none;
 }
 #comments-list .comment img{

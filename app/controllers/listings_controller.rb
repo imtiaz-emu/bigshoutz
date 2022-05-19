@@ -10,6 +10,7 @@ class ListingsController < ApplicationController
   def index
     @services = Service.all
     @listings = Listing.includes(:service, :uploads_attachments).all
+    @listings = @listings.where("meta_keywords iLike ?", "%#{params[:tag]}%") if params[:tag].present?
     @listings = @listings.where(owner_id: params[:u]) if params[:u].present?
     @listings = @listings.where(service_id: params[:s]) if params[:s].present?
     @listings = @listings.order(sort_listings)

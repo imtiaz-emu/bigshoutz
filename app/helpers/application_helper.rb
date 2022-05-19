@@ -21,6 +21,11 @@ module ApplicationHelper
     Service.active
   end
 
+  def all_hashtags
+    Listing.all.map { |l| l.hashtags }
+      .flatten.tally.sort_by { |_,v| -v }.map(&:first).first(20)
+  end
+
   def owner_of?(object)
     current_user == object.user
   end

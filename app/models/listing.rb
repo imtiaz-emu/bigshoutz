@@ -64,6 +64,10 @@ class Listing < ApplicationRecord
     user ? votes.where(user_id: user.id) : votes
   end
 
+  def hashtags
+    meta_keywords.split(',').map(&:strip)
+  end
+
   Service::DEFAULT_SERVICES.each do |service_name|
     define_method :"is_#{service_name.parameterize.underscore}?" do
       self.service.title == service_name
