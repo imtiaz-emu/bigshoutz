@@ -32,3 +32,24 @@
     </ul>
   </div>
 </div>
+
+<div class="listing-tags card sidebar-menu mb-4">
+  <div class="card-header">
+    <h3 class="h4 card-title">Hashtags
+      <a href="<%= listings_path %>" class="btn btn-sm btn-danger pull-right">
+        <i class="fa fa-times-circle"></i> Clear
+      </a>
+    </h3>
+  </div>
+  <div class="card-body">
+    <% all_hashtags.each do |tag| %>
+      <%= link_to listings_path(tag: tag) do %>
+        <% if params[:tag] == tag %>
+          <span class="badge badge-pill badge-success"><%= tag %></span>
+        <% else %>
+          <span class="badge badge-pill badge-light"><%= tag %></span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

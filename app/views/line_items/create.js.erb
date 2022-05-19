@@ -1,0 +1,5 @@
+// update header cart item counter
+var cart = $('#basket-overview span');
+cart.text("<%= @cart.line_items.length %> items in cart");
+$('#vote-buy-modal .close').click();
+alert('Item successfully added to cart');

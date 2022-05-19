@@ -42,7 +42,7 @@
           <% if @listing.is_free? %>
             Free
           <% else %>
-            <%= @listing.currency %> <%= @listing.price %>
+            <%= number_to_currency(@listing.price, unit: 'RM') %>
           <% end %>
         </p>
 
@@ -73,7 +73,7 @@
         <li><strong>Event Time: </strong><%= @listing.event_time.strftime('%d-%m-%Y at %I:%M%p') %></li>
       <% end %>
       <li><strong>Event Place: </strong><%= @listing.event_place %></li>
-      <% if @listing.event_address.present? %>
+      <% if @listing.event_address.present? && @listing.is_hang_out? %>
         <li><strong>Event Address: </strong><%= @listing.event_address %></li>
       <% end %>
     </ul>
@@ -95,4 +95,6 @@
       </p>
     </div>
   </div>
+
+  <%= render 'line_items/vote_buy_modal' %>
 </div>

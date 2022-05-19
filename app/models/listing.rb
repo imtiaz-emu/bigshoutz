@@ -34,6 +34,9 @@ class Listing < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many_attached :uploads, dependent: :destroy
+  has_many :line_items, as: :line_item_able
+
+  before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :uploads, content_type: { in: %i[gif png jpg jpeg mp4 3gp mkv],
                                       min: 1, max: 4,
@@ -42,6 +45,8 @@ class Listing < ApplicationRecord
   validate :price_is_present?
 
   enum video_preview_duration: { '5_Second': 1, '10_Second': 2 }
+
+  SORT_OPTIONS = %w[price name votes]
 
   def has_video?
     videos.any?
@@ -59,6 +64,16 @@ class Listing < ApplicationRecord
     user ? votes.where(user_id: user.id) : votes
   end
 
+  def hashtags
+    meta_keywords.split(',').map(&:strip)
+  end
+
+  Service::DEFAULT_SERVICES.each do |service_name|
+    define_method :"is_#{service_name.parameterize.underscore}?" do
+      self.service.title == service_name
+    end
+  end
+
   private
 
   def price_is_present?
@@ -66,8 +81,13 @@ class Listing < ApplicationRecord
 
     if self.price.blank?
       errors.add(:price, ' Cannot be blank')
-    elsif self.currency.blank?
-      errors.add(:currency, ' Cannot be blank')
+    end
+  end
+
+  def ensure_not_referenced_by_any_line_item
+    unless line_items.empty?
+      errors.add(:base, 'Line Items present')
+      throw :abort
     end
   end
 end

@@ -35,7 +35,7 @@
               <i class="fa fa-unlink"></i>
             <% end %>
           </td>
-          <td><%= addon.price %> (<%= addon.currency %>)</td>
+          <td><%= number_to_currency(addon.price, unit: 'RM') %></td>
           <td><%= addon.stock %></td>
           <td>
             <span class="badge badge-<%= object_statuses[addon.is_active.to_s] %>">

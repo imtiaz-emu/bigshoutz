@@ -1,0 +1,92 @@
+<div id="all">
+  <div id="content">
+    <div class="container">
+      <div class="row">
+        <div id="basket" class="col-lg-9">
+          <div class="box">
+            <%= form_for @cart do |f| %>
+              <% cart_items = @cart.line_items %>
+              <h1>Shopping cart</h1>
+              <p class="text-muted">You currently have <%= cart_items.length %> item(s) in your cart.</p>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th colspan="2">Product</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                    <th>Discount</th>
+                    <th colspan="2">Total</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <%= render 'line_items/line_item', f: f %>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th colspan="5">Total</th>
+                    <th colspan="2"><%= number_to_currency(@cart.total_price) %></th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.table-responsive-->
+              <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                <div class="left"><a href="<%= listings_path %>" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
+                <% if cart_items.any? %>
+                  <div class="right">
+                    <%= link_to @cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' do %>
+                      <i class="fa fa-trash"></i> Empty cart
+                    <% end %>
+                    <button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button>
+                    <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></button>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div id="order-summary" class="box">
+            <div class="box-header">
+              <h3 class="mb-0">Order summary</h3>
+            </div>
+            <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+            <div class="table-responsive">
+              <table class="table">
+                <tbody>
+                <tr>
+                  <td>Order subtotal</td>
+                  <th><%= number_to_currency(@cart.total_price, unit: 'RM') %></th>
+                </tr>
+                <tr>
+                  <td>Tax</td>
+                  <th>0.00</th>
+                </tr>
+                <tr class="total">
+                  <td>Total</td>
+                  <th><%= number_to_currency(@cart.total_price, unit: 'RM') %></th>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-header">
+              <h4 class="mb-0">Coupon code</h4>
+            </div>
+            <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
+            <form>
+              <div class="input-group">
+                <input type="text" class="form-control"><span class="input-group-append">
+                      <button type="button" class="btn btn-primary"><i class="fa fa-gift"></i></button></span>
+              </div>
+              <!-- /input-group-->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

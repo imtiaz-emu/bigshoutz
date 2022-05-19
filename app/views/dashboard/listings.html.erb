@@ -27,7 +27,7 @@
           <th># <%= listing.id %></th>
           <td><%= listing.name %></td>
           <td><%= listing.service.title %></td>
-          <td><%= listing.currency %> <%= listing.price %></td>
+          <td><%= number_to_currency(listing.price, unit: 'RM') %></td>
           <td><%= listing.available_on.strftime('%d-%m-%Y at %I:%M%p') %></td>
           <td><%= listing.event_time.strftime('%d-%m-%Y at %I:%M%p') %></td>
 

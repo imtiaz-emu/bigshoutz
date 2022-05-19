@@ -13,7 +13,7 @@
       </div>
     <% end %>
     <p class="intro"><%= @addon.description %></p>
-    <p><%= @addon.price %> (<%= @addon.currency %>)</p>
+    <p><%= number_to_currency(@addon.price, unit: 'RM') %></p>
     <p><%= @addon.stock %></p>
   </div>
 
