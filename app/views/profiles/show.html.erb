@@ -15,14 +15,16 @@
       </p>
     </div>
 
-    <div class="col-md-4">
-      <h4><i class="fa fa-phone"></i> Contact</h4>
-      <p>
-        <strong><%= @profile.mobile_no %></strong>
-        <br>
-        <%= @user.email %>
-      </p>
-    </div>
+    <% if current_profile?(@profile) %>
+      <div class="col-md-4">
+        <h4><i class="fa fa-phone"></i> Contact</h4>
+        <p>
+          <strong><%= @profile.mobile_no %></strong>
+          <br>
+          <%= @user.email %>
+        </p>
+      </div>
+    <% end %>
 
     <div class="col-md-4">
       <h4><i class="fa fa-coffee"></i> Social</h4>

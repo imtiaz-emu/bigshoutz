@@ -44,6 +44,8 @@ class Listing < ApplicationRecord
   validates_presence_of :name, :description, :available_on
   validate :price_is_present?
 
+  scope :search_by, -> (q) { where("meta_keywords iLike '%#{q}%' OR name iLike '%#{q}%'") }
+
   enum video_preview_duration: { '5_Second': 1, '10_Second': 2 }
 
   SORT_OPTIONS = %w[price name votes]

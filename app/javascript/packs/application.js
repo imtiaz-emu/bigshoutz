@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 
 require('jquery');
+require('popper.js/dist/umd/popper');
 require('packs/bootstrap.bundle.min');
 require('packs/owl.carousel.min');
 require('packs/owl.carousel2.thumbs.min');
@@ -16,3 +17,8 @@ import "channels"
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+$(document.body).tooltip({
+  selector: "[data-toggle='tooltip']",
+  trigger: "hover"
+});

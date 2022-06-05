@@ -29,11 +29,9 @@
                 <li class="nav-item">
                   <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
                 </li>
-                <% User::CUSTOMER_TYPES.each do |c_type| %>
-                  <li class="nav-item">
-                    <%= link_to "Register as a #{c_type.capitalize}", new_user_registration_path(t: c_type), class: 'nav-link' %>
-                  </li>
-                <% end %>
+                <li class="nav-item">
+                  <%= link_to "Register", new_user_registration_path, class: 'nav-link' %>
+                </li>
               <% end %>
 
               <% if current_user %>
@@ -58,9 +56,11 @@
                   <a href="<%= listings_path(s: service.id) %>" class="nav-link"><%= service.title %></a>
                 </li>
               <% end %>
+              <li class="nav-item">
+                <a href="<%= listings_path %>" class="nav-link">All</a>
+              </li>
             </ul>
           </li>
-          <li class="nav-item"><a href="<%= listings_path %>" class="nav-link">Listings</a></li>
         </ul>
 
         <div class="navbar-buttons d-flex justify-content-end">
@@ -82,11 +82,11 @@
 
   <div id="search" class="collapse">
     <div class="container">
-      <form role="search" class="ml-auto">
+      <form role="search" class="ml-auto" action="<%= listings_path %>" method="GET">
         <div class="input-group">
-          <input type="text" placeholder="Search" class="form-control">
+          <input type="text" name="q" required placeholder="Search" class="form-control">
           <div class="input-group-append">
-            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
           </div>
         </div>
       </form>

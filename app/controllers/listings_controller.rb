@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index show ]
-  before_action :check_user_type, only: %i[ create new ]
+  # before_action :check_user_type, only: %i[ create new ]
   before_action :default_index_params, only: %i[ index ]
   before_action :check_profile_data_missing, only: %i[ create new ]
   before_action :set_listing, only: %i[ edit update destroy ]
@@ -11,6 +11,7 @@ class ListingsController < ApplicationController
     @services = Service.all
     @listings = Listing.includes(:service, :uploads_attachments).all
     @listings = @listings.where("meta_keywords iLike ?", "%#{params[:tag]}%") if params[:tag].present?
+    @listings = @listings.search_by(params[:q]) if params[:q].present?
     @listings = @listings.where(owner_id: params[:u]) if params[:u].present?
     @listings = @listings.where(service_id: params[:s]) if params[:s].present?
     @listings = @listings.order(sort_listings)
