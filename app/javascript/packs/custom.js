@@ -28,4 +28,6 @@ $(document).on('turbolinks:load', function() {
   $('#comment-cancel').click(function () {
     $('textarea[name="comment[description]"]').val('');
   });
+
+  $('[data-toggle="tooltip"]').tooltip()
 });

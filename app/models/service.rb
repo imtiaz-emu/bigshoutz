@@ -20,5 +20,5 @@ class Service < ApplicationRecord
     attachable.variant :main, resize: '250x250'
   end
 
-  DEFAULT_SERVICES = ['Hang Out', 'Live Video', 'Exclusives', 'Shout Out'].freeze
+  DEFAULT_SERVICES = ['Hangout', 'Live Video', 'Exclusives', 'Shout Out'].freeze
 end
